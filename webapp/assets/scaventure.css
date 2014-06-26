@@ -414,4 +414,6 @@ button[disabled],
 }
 /* Scaventure Styling */
 .ui-overlay-a, .ui-page-theme-a, .ui-page-theme-a .ui-panel-wrapper {margin: 0 30%;}
+#button {margin-top:1em;}
+/*input[type="button"], input[type="submit"], input[type="reset"]{display:none;}*/
 			
