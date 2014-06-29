@@ -11,6 +11,97 @@
 
     <script src="assets/jquery-1.11.1.min.js"></script>
     <script src="assets/jquery.mobile-1.4.2.min.js"></script>
+    <script type="text/javascript">
+    
+    // function to read storage and init form
+    function checkStorage() {
+        // check if local storage available
+        if (window.localStorage) {
+            var key, value, field;
+            // loop through local storage
+            for (var i = 0; i < localStorage.length; i++) {
+                // retrieve the key
+                key = localStorage.key(i);
+                
+                // set the field from the key
+                field = document.getElementById(key);
+                
+                // check for field and assign value
+                if (field) {
+                    // retrieve the value
+                    value = unescape(localStorage.getItem(key));
+                    // set the field value
+                    field.value = value; 
+                }
+            } // end for loop
+        } // end local storage check 
+    } // end function
+    
+    // set the localStorage with the changed field
+    function changeField(elKey, elValue) {
+        // check if local storage available
+        if (window.localStorage) {
+            var key, value;
+            
+            // set key to form field id
+            key = elKey;
+            
+            // set value to form field value
+            value = elValue;
+            
+            // try to set item in local storage 
+            try {
+                localStorage.setItem(key, value); 
+            }
+            catch (err) {
+                if (err.code == QUOTA_EXCEEDED_ERR) {
+                    alert('localStorage ran out of memory.'); }
+                }
+            } else {
+                alert('localStorage is not supported.');
+            } 
+        }
+    // initialize our form from storage
+    window.addEventListener('load',checkStorage,false);
+    </script>
+    
+	<script>
+ 	$(document).ready(function(){
+ 		var json;
+    	//load the json object into the local storage
+
+	    $.getJSON("assets/profileJSON.json", function(result) {
+			json = result;
+			console.log("This is a name " + json.profile.username);
+			
+            $.each(json.profile, function(key, value) {
+                $("#userStats").append($("li").attr("value",value.name).text(value.name));
+                $("#userStats").trigger("change");
+            });
+	    });
+
+        $("#userStats").bind("change", function(){
+            var city = $("#userStats").val();
+            changeField('username', username);
+            
+            console.log(json.profile.username);
+        });
+	});
+	
+    
+    	
+    
+    
+  	//Load user info from local storage
+  	//function loadUser
+  	//if new user or first vist show profile set up
+  	
+  	//tell them to push user info into user local storage array
+  	
+  	//loop to display profile contents
+  	
+ 		
+    </script>
 </head>
 <body>
 
@@ -25,8 +116,14 @@
         <img src="assets/images/mustache.png" width="70" height="70" style="float: right; display: block;"></img>
     	<div data-role="content" data-inset="true">
                 <h3>Welcome back,<div id="userName"></div></h3>
+                <ul class="profileList" style="list-style-type: none;display:inline;" >
+                <div id="userStats"></div>
+                <li style="display:inline;width:25%;"><a href="#" class="ui-btn ui-icon-star ui-btn-icon-left"><div id=""> 5 </div></a>  Stars Found</li>
                 
+        		<li><div id=""></div>  Hunts Completed</li>
                 
+        		<li><div id=""></div>  Cities Scavenged</li>
+                </ul>
                 <br><br>
                  
         </div>
