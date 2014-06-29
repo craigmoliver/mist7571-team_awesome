@@ -20,24 +20,34 @@
     <div data-role="main" class="ui-content">
     	<img src="assets/mustache.png"/>
         <br/>
-        //below should be populated from local storage
-        //City and Hunt Name
-        <h2>Hunt Name</h2>
-        <p>Hunt Description</p>
+        <!-- Below should be populated from local storage -->
+        <!-- City and Hunt Name -->
+        <div id="huntName"></div>
+        <div id="huntDesc"></div>
         	<ul>
-        		<li id="clueIcon" class="1">CLUE<li>
+        		<li><div id="iconState1">CLUE</div><li>
+        		<!-- hidden description -->
+        		<div id="descState1">
+        		<div id="clueDesc1"></div>
         		<input type="submit" id="button" value="X Marks" />
         		<!-- Confirms the location and opens next clue -->
+        		</div>
         		
-        		<li id="clueIcon" class="2">CLUE<li>
-        		<!--  -->
+        		<li><div id="iconState2">CLUE</div><li>
+        		<!-- hidden description -->
+        		<div id="descState3">
+        		<div id="clueDesc2"></div>
         		<input type="submit" id="button" value="X Marks" />
         		<!-- Confirms the location and opens next clue -->
+        		</div>
         		
-        		<li id="clueIcon" class="3">CLUE<li>
+        		<li><div id="iconState3">CLUE</div><li>
+        		<!-- hidden description -->
+        		<div id="descState3">
+        		<div id="clueDesc3"></div>
         		<input type="submit" id="button" value="X Marks" />
         		<!-- Confirms the location and concludes games -->
-					
+				</div>	
 				
 			</ul>
 			</fieldset>
