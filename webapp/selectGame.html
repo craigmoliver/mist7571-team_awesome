@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Scaventure</title>
+	<title>Scaventure - the Adventure Awaits</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="assets/scaventure.min.css" />
     <link rel="stylesheet" href="assets/jquery.mobile.icons.min.css" />
     <link rel="stylesheet" href="assets/jquery.mobile.structure-1.4.2.min.css" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Seaweed+Script">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Abel">
+
     <script src="assets/jquery-1.11.1.min.js"></script>
     <script src="assets/jquery.mobile-1.4.2.min.js"></script>
     
@@ -39,6 +42,9 @@
 		window.addEventListener('load',init);
 	</script>
 	<script>
+	$(document).bind('mobileinit',function(){
+	   $.mobile.selectmenu.prototype.options.nativeMenu = false;
+	});
  	$(document).ready(function(){
  		var json;
     	//load the json object into the local storage
@@ -50,112 +56,44 @@
 					
 			console.log("Scaventure " + json.scaventure.cities.length);
 		
-    	
-	    var cityList = "<li data-option-index='-1' data-icon='false' class='ui-first-child' role='option' aria-selected='false'>"
-			+"<a href='#' tabindex='-1' class='ui-btn'>Select A City</a></li>";	
+
 		for (var c=0; c < json.scaventure.cities.length; c++){
-			if (c==0) {
-				cityList +="<li data-option-index='"+[c]+"' data-icon='false' class='ui-first-child' role='option' aria-selected='false'>"
-				+"<a href='#' tabindex='-1' class='ui-btn'>" + json.scaventure.cities[c].name + "</a></li>";
-			}else if (c==json.scaventure.cities.length.length-1) {
-				cityList +="<li data-option-index='"+[c]+"' data-icon='lock' class='ui-last-child' role='option' aria-selected='false'>"
-				+"<a href='#' tabindex='-1' class='ui-btn'>" + json.scaventure.cities[c].name + "</a></li>";
-			} else {
-				cityList +="<li data-option-index='"+[c]+"' data-icon='lock' class='' role='option' aria-selected='false'>"
-				+"<a href='#' tabindex='-1' class='ui-btn'>" + json.scaventure.cities[c].name + "</a></li>";
-			}
+			var city = json.scaventure.cities[c].name;
+			$('#cityList').append('<option value=' + city + '>' + city + '</option>');
+			console.log(city);
 			
 		}
-		console.log(cityList);
-		document.getElementById('cityList').innerHTML=cityList;
 	    });
 	});
 	</script>
 </head>
 <body>
-
-<div data-role="page">
+	<div data-role="page">
+    <!-- header -->
     <div data-role="header">
-        <h1 class="title">Scaventure</h1>
-    </div><!-- /header -->
-
+        <a href="index.html" data-icon="home">Home</a>
+        <h1>Scaventure</h1>
+    </div>
+    <br/>
+    <!-- logo-->
     <div data-role="main" class="ui-content">
-    	<img src="assets/mustache.png"/>
-        <br/>
-        <!-- Below should be populated from local storage -->
-        <form>
-			<fieldset>
-			<!-- <ul role="listbox" class="ui-selectmenu-list ui-listview ui-group-theme-a" >
-		        <li><label for="selectCity" class="title">Select City:</label>
-		        </ul>
-					<select id="selectCity" class="ui-popup-container ui-popup-active">
-					
-						<div class="ui-popup-container ui-popup-active" id="select-choice-a-listbox-popup" tabindex="0" style="max-width: 679px; top: 436px; left: 89px;">
-						<div id="select-choice-a-listbox" class="ui-selectmenu ui-popup ui-body-inherit ui-overlay-shadow ui-corner-all">
-							<div class="ui-header ui-bar-a ui-screen-hidden">
-								<h1 class="ui-title"></h1>
-							</div>
-							<ul class="ui-selectmenu-list ui-listview ui-group-theme-a" id="select-choice-a-menu" name="cityList" role="listbox" aria-labelledby="select-choice-a-button" data-theme="a">
-								<div id="cityList"></div>
-								<li data-option-index='-1' data-icon='false' class='ui-first-child' role='option' aria-selected='false'><a href='#' tabindex='-1' class='ui-btn'>Select A City</a></li>
-								<li data-option-index='0' data-icon='false' class='ui-first-child' role='option' aria-selected='false'><a href='#' tabindex='-1' class='ui-btn'>atlanta</a></li>
-								<li data-option-index='1' data-icon='lock' class='' role='option' aria-selected='false'><a href='#' tabindex='-1' class='ui-btn'>norcross</a></li>
-								<li data-option-index='2' data-icon='lock' class='' role='option' aria-selected='false'><a href='#' tabindex='-1' class='ui-btn'>roswell</a></li>
-							</ul>
-						</div>
-						</div>
-					
-					
-					<option role="option" >Athens</option>
-					<option role="option" >Atlanta</option>
-					<option role="option" >Norcross</option>
-					option role="option" >Roswell</option
-					</select>
-				</li>
-				<li><label for="selectHunt" class="title">Select Hunt:</label>
-					<select id="selectHunt" class="ui-popup-container ui-popup-active">
-					<div id="huntList"></div>
-					 <option>The Maroon Bulldog</option>
-					<option>Ghosts Of Bulldogs</option>
-					<option>Bulldogs And Crossbones</option>
-					<option>Crossed Paws And Treasure</option>
-					</select>
-				</li>
-				<div class="ui-popup-container ui-popup-active" id="select-choice-a-listbox-popup" 
-				tabindex="0" style="max-width: 679px; top: 436px; left: 89px;"><div 
-				id="select-choice-a-listbox" class="ui-selectmenu ui-popup ui-body-inherit ui-overlay-shadow ui-corner-all">
-				<div class="ui-header ui-bar-a ui-screen-hidden">
-				<h1 class="ui-title"></h1></div>
-				<ul class="ui-selectmenu-list ui-listview ui-group-theme-a" id="select-choice-a-menu" 
-				role="listbox" aria-labelledby="select-choice-a-button" data-theme="a">
-				<li data-option-index="0" data-icon="false" class="ui-first-child" role="option" aria-selected="true">
-				<a href="#" tabindex="-1" class="ui-btn ui-btn-active">Option 1</a></li>
-				<li data-option-index="1" data-icon="star" class="" role="option" aria-selected="false">
-				<a href="#" tabindex="-1" class="ui-btn">Option 2</a></li>
-				<li data-option-index="2" data-icon="lock" class="" role="option" aria-selected="false">
-				<a href="#" tabindex="-1" class="ui-btn">Option 3</a></li>
-				<li data-option-index="3" data-icon="lock" class="ui-last-child" role="option" aria-selected="false">
-				<a href="#" tabindex="-1" class="ui-btn">Option 4</a></li>
-				</ul></div>
-				</div>
-					
-				<input type="submit" id="selectHunt" value="Let the Hunt Begin" /> -->
-			<label for="selectCity" class="title">Select a City:</label>
-			
-				<div class="ui-popup-container ui-popup-active" id="select-choice-a-listbox-popup" tabindex="0" style="max-width: 679px; top: 436px; left: 89px;">
-					<div id="select-choice-a-listbox" class="ui-selectmenu ui-popup ui-body-inherit ui-overlay-shadow ui-corner-all">
-						<div class="ui-header ui-bar-a ui-screen-hidden">
-							<h1 class="ui-title">Select a City</h1>
-						</div>
-						<ul class="ui-selectmenu-list ui-listview ui-group-theme-a" id="cityList" name="cityList" role="listbox" aria-labelledby="select-choice-a-button" data-theme="a">
-						</ul>
-					</div>
-				</div>
-			</fieldset>
-		</form>
-    </div><!-- /content -->
+        <img src="assets/images/mustache.png" width="70" height="70" style="float: right; display: block;"></img>
+    </div>
+    <!-- content -->
+    <div data-role="content" data-inset="true">
+    	<div data-role="fieldcontain">
+			<label for="select-choice-custom" class="select">Select a City:</label>
+			<select name="select-choice-1" id="cityList" data-native-menu="false">
+				
+			</select>
+		</div>
+    </div>
+    <!-- /content -->
+
+    <div data-role="footer">
+        <h4>2014 Scaventure - MIST 7571 | Team Awesome</h4>
+    </div><!-- /footer -->
 
 </div><!-- /page -->
-
 </body>
 </html>
