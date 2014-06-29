@@ -1,0 +1,384 @@
+{
+    "scaventure": {
+        "cities": [
+            {
+                "atlanta": {
+                    "hunt": [
+                        {
+                            "order": 0,
+                            "name": "Historic",
+                            "desc": "Hunt for Historical sites in Atlanta, GA",
+                            "clues": [
+                                {
+                                        "order": 0,
+                                        "name": "Swan House",
+                                        "desc": "Designed by famed Atlanta architect Philip Trammell Shutze",
+                                        "location": {
+                                        	"latitude": "33.8404165",
+                                        	"longitude": "-84.38757959999998"
+                                        },
+                                        "fact": "In 2004, the Atlanta History Center completed a $5.4 million restoration of the house and its furnishings",
+                                        "imageUrl": "/assets/images/atl_swanhouse.png"
+                                },
+                                {
+                                        "order": 1,
+                                        "name": "The Varsity",
+                                        "desc": "A restaurant chain, iconic in the modern culture of Atlanta, Georgia",
+                                        "location": {
+                                        	"latitude": "33.748995",
+                                        	"longitude": "-84.387982"
+                                        },
+                                        "fact": "Downtown Atlanta location is on more than two acres and can accommodate 600 cars and over 800 people inside",
+                                        "imageUrl": "/assets/images/atl_varsity.png"
+                                },
+                                {
+                                        "order": 2,
+                                        "name": "Ferris Wheel",
+                                        "desc": "One-of-a-kind, thrilling look at Atlanta from atop a 200-foot story",
+                                        "location": {
+                                        	"latitude": "33.758847",
+                                        	"longitude": "-84.39181099999996"
+                                        },
+                                        "fact": "Those looking for an even more enhanced experience can enjoy VIP gondola boasting Ferrari leather seats, glass floor and a longer flight time",
+                                        "imageUrl": "/assets/images/atl_ferriswheel.png"
+                                }
+                            ]
+                        },
+                        {
+                            "order": 1,
+                            "name": "Landmarks",
+                            "desc": "Hunt for Atlanta, GA Landmarks",
+                            "clues": [
+                                {
+                                        "order": 0,
+                                        "name": "Swan House",
+                                        "desc": "Designed by famed Atlanta architect Philip Trammell Shutze",
+                                        "location": {
+                                        	"latitude": "33.8404165",
+                                        	"longitude": "-84.38757959999998"
+                                        },
+                                        "fact": "In 2004, the Atlanta History Center completed a $5.4 million restoration of the house and its furnishings",
+                                        "imageUrl": "/assets/images/atl_swanhouse.png"
+                                },
+                                {
+                                        "order": 1,
+                                        "name": "The Varsity",
+                                        "desc": "A restaurant chain, iconic in the modern culture of Atlanta, Georgia",
+                                        "location": {
+                                        	"latitude": "33.748995",
+                                        	"longitude": "-84.387982"
+                                        },
+                                        "fact": "Downtown Atlanta location is on more than two acres and can accommodate 600 cars and over 800 people inside",
+                                        "imageUrl": "/assets/images/atl_varsity.png"
+                                },
+                                {
+                                        "order": 2,
+                                        "name": "Ferris Wheel",
+                                        "desc": "One-of-a-kind, thrilling look at Atlanta from atop a 200-foot story",
+                                        "location": {
+                                        	"latitude": "33.758847",
+                                        	"longitude": "-84.39181099999996"
+                                        },
+                                        "fact": "Those looking for an even more enhanced experience can enjoy VIP gondola boasting Ferrari leather seats, glass floor and a longer flight time",
+                                        "imageUrl": "/assets/images/atl_ferriswheel.png"
+                                }
+                            ]
+                        },
+                        {
+                            "order": 2,
+                            "name": "Popular Venues",
+                            "desc": "Hunt Popular Venues in Atlanta, GA",
+                            "clues": [
+                                {
+                                        "order": 0,
+                                        "name": "Swan House",
+                                        "desc": "Designed by famed Atlanta architect Philip Trammell Shutze",
+                                        "location": {
+                                        	"latitude": "33.8404165",
+                                        	"longitude": "-84.38757959999998"
+                                        },
+                                        "fact": "In 2004, the Atlanta History Center completed a $5.4 million restoration of the house and its furnishings",
+                                        "imageUrl": "/assets/images/atl_swanhouse.png"
+                                },
+                                {
+                                        "order": 1,
+                                        "name": "The Varsity",
+                                        "desc": "A restaurant chain, iconic in the modern culture of Atlanta, Georgia",
+                                        "location": {
+                                        	"latitude": "33.748995",
+                                        	"longitude": "-84.387982"
+                                        },
+                                        "fact": "Downtown Atlanta location is on more than two acres and can accommodate 600 cars and over 800 people inside",
+                                        "imageUrl": "/assets/images/atl_varsity.png"
+                                },
+                                {
+                                        "order": 2,
+                                        "name": "Ferris Wheel",
+                                        "desc": "One-of-a-kind, thrilling look at Atlanta from atop a 200-foot story",
+                                        "location": {
+                                        	"latitude": "33.758847",
+                                        	"longitude": "-84.39181099999996"
+                                        },
+                                        "fact": "Those looking for an even more enhanced experience can enjoy VIP gondola boasting Ferrari leather seats, glass floor and a longer flight time",
+                                        "imageUrl": "/assets/images/atl_ferriswheel.png"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            {
+                "norcross": {
+                    "hunt": [
+                        {
+                            "order": 0,
+                            "name": "Historic",
+                            "desc": "Hunt for Historical sites in Norcross, GA",
+                            "clues": [
+                                {
+                                        "order": 0,
+                                        "name": "Gwinnett Mall",
+                                        "desc": "This mall was seriously challenged by the opening of Mall of Georgia in 1999 and Sugarloaf Mills (formerly Discover Mills) in 2001",
+                                        "location": {
+                                        	"latitude": "33.9600257",
+                                        	"longitude": "-84.12603189999999"
+                                        },
+                                        "fact": "What used to be Belk department store, is turning into a Fantasy World",
+                                        "imageUrl": "/assets/images/norcross_gwinnettmall.png"
+                                },
+                                {
+                                    	"order": 0,
+                                        "name": "Historic Downtown Norcross",
+                                        "desc": "Downtown to Only Historic District in Gwinnett County Listed in the United States Department of the Interior National Registry of Historic Landmarks",
+                                        "location": {
+                                        	"latitude": "33.935839",
+                                        	"longitude": "-84.21880440000001"
+                                        },
+                                        "fact": "Gwinnett County’s second oldest city, Norcross saw new roads and highways which were later built by-pass the city, preserving its historic center as a 19th-century railroad town",
+                                        "imageUrl": "/assets/images/norcross_downtown.png"
+                                },
+                                {
+                                    	"order": 0,
+                                        "name": "MicroCenter",
+                                        "desc": "Is a destination retailer designed to satisfy the dedicated computer user",
+                                        "location": {
+                                        	"latitude": "33.9654575",
+                                        	"longitude": "-84.14141889999996"
+                                        },
+                                        "fact": "MicroCenter is the retail company in the Micro Electronics family that also includes WinBook Corporation, Redemtech, and PowerSpec",
+                                        "imageUrl": "/assets/images/norcross_microcenter.png"
+                                }
+                            ]
+                        },
+                        {
+                            "order": 1,
+                            "name": "Landmarks",
+                            "desc": "Hunt for Norcross, GA Landmarks",
+                            "clues": [
+                                {
+                                        "order": 0,
+                                        "name": "Gwinnett Mall",
+                                        "desc": "This mall was seriously challenged by the opening of Mall of Georgia in 1999 and Sugarloaf Mills (formerly Discover Mills) in 2001",
+                                        "location": {
+                                        	"latitude": "33.9600257",
+                                        	"longitude": "-84.12603189999999"
+                                        },
+                                        "fact": "What used to be Belk department store, is turning into a Fantasy World",
+                                        "imageUrl": "/assets/images/norcross_gwinnettmall.png"
+                                },
+                                {
+                                    	"order": 0,
+                                        "name": "Historic Downtown Norcross",
+                                        "desc": "Downtown to Only Historic District in Gwinnett County Listed in the United States Department of the Interior National Registry of Historic Landmarks",
+                                        "location": {
+                                        	"latitude": "33.935839",
+                                        	"longitude": "-84.21880440000001"
+                                        },
+                                        "fact": "Gwinnett County’s second oldest city, Norcross saw new roads and highways which were later built by-pass the city, preserving its historic center as a 19th-century railroad town",
+                                        "imageUrl": "/assets/images/norcross_downtown.png"
+                                },
+                                {
+                                    	"order": 0,
+                                        "name": "MicroCenter",
+                                        "desc": "Is a destination retailer designed to satisfy the dedicated computer user",
+                                        "location": {
+                                        	"latitude": "33.9654575",
+                                        	"longitude": "-84.14141889999996"
+                                        },
+                                        "fact": "MicroCenter is the retail company in the Micro Electronics family that also includes WinBook Corporation, Redemtech, and PowerSpec",
+                                        "imageUrl": "/assets/images/norcross_microcenter.png"
+                                }
+                            ]
+                        },
+                        {
+                            "order": 2,
+                            "name": "Popular Venues",
+                            "desc": "Hunt Popular Venues in Norcross, GA",
+                            "clues": [
+                                {
+                                        "order": 0,
+                                        "name": "Gwinnett Mall",
+                                        "desc": "This mall was seriously challenged by the opening of Mall of Georgia in 1999 and Sugarloaf Mills (formerly Discover Mills) in 2001",
+                                        "location": {
+                                        	"latitude": "33.9600257",
+                                        	"longitude": "-84.12603189999999"
+                                        },
+                                        "fact": "What used to be Belk department store, is turning into a Fantasy World",
+                                        "imageUrl": "/assets/images/norcross_gwinnettmall.png"
+                                },
+                                {
+                                    	"order": 0,
+                                        "name": "Historic Downtown Norcross",
+                                        "desc": "Downtown to Only Historic District in Gwinnett County Listed in the United States Department of the Interior National Registry of Historic Landmarks",
+                                        "location": {
+                                        	"latitude": "33.935839",
+                                        	"longitude": "-84.21880440000001"
+                                        },
+                                        "fact": "Gwinnett County’s second oldest city, Norcross saw new roads and highways which were later built by-pass the city, preserving its historic center as a 19th-century railroad town",
+                                        "imageUrl": "/assets/images/norcross_downtown.png"
+                                },
+                                {
+                                    	"order": 0,
+                                        "name": "MicroCenter",
+                                        "desc": "Is a destination retailer designed to satisfy the dedicated computer user",
+                                        "location": {
+                                        	"latitude": "33.9654575",
+                                        	"longitude": "-84.14141889999996"
+                                        },
+                                        "fact": "MicroCenter is the retail company in the Micro Electronics family that also includes WinBook Corporation, Redemtech, and PowerSpec",
+                                        "imageUrl": "/assets/images/norcross_microcenter.png"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            {
+                "roswell": {
+                    "hunt": [
+                        {
+                            "order": 0,
+                            "name": "Historic",
+                            "desc": "Hunt for Historical sites in Roswell, GA",
+                            "clues": [
+                                {
+                                    	"order": 0,
+                                        "name": "Old Mill Park",
+                                        "desc": "This bridge and waterfall are favorite spots for amateur and professional photographers, that was burned in 1864 and 1926 and re-built",
+                                        "location": {
+                                        	"latitude": "34.0145145",
+                                        	"longitude": "-84.36087040000001"
+                                        },
+                                        "fact": "The waterfall created when the creek was dammed to provide waterpower as well as the original machine shop can be viewed from the interpreted trail",
+                                        "imageUrl": "/assets/images/roswell_mill.png"
+                                },
+                                {
+                                    	"order": 1,
+                                        "name": "Smith Plantation Home",
+                                        "desc": "This home and grounds have become one of the best examples of architectural, cultural, and historical interpretation found in the Southern region",
+                                        "location": {
+                                        	"latitude": "34.0240364",
+                                        	"longitude": "-84.35979529999997"
+                                        },
+                                        "fact": "Three generations of the Archibald Smith family lived in this home and saved all of their belongings, large and small, important and trivial, broken or whole.",
+                                        "imageUrl": "/assets/images/roswell_smithplantation.png"
+                                },
+                                {
+                                        "order": 2,
+                                        "name": "Mansell House & Gardens",
+                                        "desc": "A 1910 Victorian home, filled with period antiques and surrounded by gardens",
+                                        "location": {
+                                        	"latitude": "34.0686416",
+                                        	"longitude": "-84.27192989999998"
+                                        },
+                                        "fact": "The Mansell House and Gardens is a beautiful venue for wedding ceremonies, receptions, rehearsal dinners, bar/bat mitzvahs, showers, birthday parties, holiday parties, meetings and more",
+                                        "imageUrl": "/assets/images/roswell_mansell.png"
+                                }
+                            ]
+                        },
+                        {
+                            "order": 1,
+                            "name": "Landmarks",
+                            "desc": "Hunt for Roswell, GA Landmarks",
+                            "clues": [
+                                {
+                                    	"order": 0,
+                                        "name": "Old Mill Park",
+                                        "desc": "This bridge and waterfall are favorite spots for amateur and professional photographers, that was burned in 1864 and 1926 and re-built",
+                                        "location": {
+                                        	"latitude": "34.0145145",
+                                        	"longitude": "-84.36087040000001"
+                                        },
+                                        "fact": "The waterfall created when the creek was dammed to provide waterpower as well as the original machine shop can be viewed from the interpreted trail",
+                                        "imageUrl": "/assets/images/roswell_mill.png"
+                                },
+                                {
+                                    	"order": 1,
+                                        "name": "Smith Plantation Home",
+                                        "desc": "This home and grounds have become one of the best examples of architectural, cultural, and historical interpretation found in the Southern region",
+                                        "location": {
+                                        	"latitude": "34.0240364",
+                                        	"longitude": "-84.35979529999997"
+                                        },
+                                        "fact": "Three generations of the Archibald Smith family lived in this home and saved all of their belongings, large and small, important and trivial, broken or whole.",
+                                        "imageUrl": "/assets/images/roswell_smithplantation.png"
+                                },
+                                {
+                                        "order": 2,
+                                        "name": "Mansell House & Gardens",
+                                        "desc": "A 1910 Victorian home, filled with period antiques and surrounded by gardens",
+                                        "location": {
+                                        	"latitude": "34.0686416",
+                                        	"longitude": "-84.27192989999998"
+                                        },
+                                        "fact": "The Mansell House and Gardens is a beautiful venue for wedding ceremonies, receptions, rehearsal dinners, bar/bat mitzvahs, showers, birthday parties, holiday parties, meetings and more",
+                                        "imageUrl": "/assets/images/roswell_mansell.png"
+                                }
+                            ]
+                        },
+                        {
+                            "order": 2,
+                            "name": "Popular Venues",
+                            "desc": "Hunt Popular Venues in Roswell, GA",
+                            "clues": [
+                                {
+                                    	"order": 0,
+                                        "name": "Old Mill Park",
+                                        "desc": "This bridge and waterfall are favorite spots for amateur and professional photographers, that was burned in 1864 and 1926 and re-built",
+                                        "location": {
+                                        	"latitude": "34.0145145",
+                                        	"longitude": "-84.36087040000001"
+                                        },
+                                        "fact": "The waterfall created when the creek was dammed to provide waterpower as well as the original machine shop can be viewed from the interpreted trail",
+                                        "imageUrl": "/assets/images/roswell_mill.png"
+                                },
+                                {
+                                    	"order": 1,
+                                        "name": "Smith Plantation Home",
+                                        "desc": "This home and grounds have become one of the best examples of architectural, cultural, and historical interpretation found in the Southern region",
+                                        "location": {
+                                        	"latitude": "34.0240364",
+                                        	"longitude": "-84.35979529999997"
+                                        },
+                                        "fact": "Three generations of the Archibald Smith family lived in this home and saved all of their belongings, large and small, important and trivial, broken or whole.",
+                                        "imageUrl": "/assets/images/roswell_smithplantation.png"
+                                },
+                                {
+                                        "order": 2,
+                                        "name": "Mansell House & Gardens",
+                                        "desc": "A 1910 Victorian home, filled with period antiques and surrounded by gardens",
+                                        "location": {
+                                        	"latitude": "34.0686416",
+                                        	"longitude": "-84.27192989999998"
+                                        },
+                                        "fact": "The Mansell House and Gardens is a beautiful venue for wedding ceremonies, receptions, rehearsal dinners, bar/bat mitzvahs, showers, birthday parties, holiday parties, meetings and more",
+                                        "imageUrl": "/assets/images/roswell_mansell.png"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}
