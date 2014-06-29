@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="assets/jquery.mobile.icons.min.css" />
+    <link rel="stylesheet" href="assets/jquery.mobile.structure-1.4.2.min.css" />
+    <link rel="stylesheet" href="assets/scaventure.css" />
+    <script src="assets/jquery.js"></script>
+    <script src="assets/jquery.mobile-1.4.2/jquery.mobile-1.4.2.js"></script>
+</head>
+<body>
+
+<div data-role="page">
+
+    <div data-role="header">
+        <h1>Scaventure</h1>
+    </div><!-- /header -->
+
+    <div data-role="main" class="ui-content">
+    	<img src="assets/mustache.png"/>
+        <br/>
+        <!-- Below should be populated from local storage -->
+        <!-- City and Hunt Name -->
+        <div id="huntName"></div>
+        <div id="huntDesc"></div>
+        	<ul>
+        		<li><div id="iconState1">CLUE</div><li>
+        		<!-- hidden description -->
+        		<div id="descState1">
+        		<div id="clueDesc1"></div>
+        		<input type="submit" id="button" value="X Marks" />
+        		<!-- Confirms the location and opens next clue -->
+        		</div>
+        		
+        		<li><div id="iconState2">CLUE</div><li>
+        		<!-- hidden description -->
+        		<div id="descState3">
+        		<div id="clueDesc2"></div>
+        		<input type="submit" id="button" value="X Marks" />
+        		<!-- Confirms the location and opens next clue -->
+        		</div>
+        		
+        		<li><div id="iconState3">CLUE</div><li>
+        		<!-- hidden description -->
+        		<div id="descState3">
+        		<div id="clueDesc3"></div>
+        		<input type="submit" id="button" value="X Marks" />
+        		<!-- Confirms the location and concludes games -->
+				</div>	
+				
+			</ul>
+			</fieldset>
+		</form>
+    </div><!-- /content -->
+
+</div><!-- /page -->
+
+</body>
+</html>

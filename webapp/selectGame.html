@@ -14,12 +14,54 @@
 <div data-role="page">
 
     <div data-role="header">
-        <h1>Scavanture</h1>
+        <h1>Scaventure</h1>
     </div><!-- /header -->
 
     <div data-role="main" class="ui-content">
     	<img src="assets/mustache.png"/>
-        <p>Hello world</p>
+        <br/>
+        //below should be populated from local storage
+        <form>
+			<fieldset>
+			<ul role="listbox" class="ui-selectmenu-list ui-listview ui-group-theme-a" >
+		        <li><label for="selectCity">Select City:</label>
+					<select id="selectCity" class="ui-popup-container ui-popup-active">
+					<option role="option" >Athens</option>
+					<option role="option" >Atlanta</option>
+					<option role="option" >Norcross</option>
+					<!--option role="option" >Roswell</option-->
+					</select>
+				</li>
+				<li><label for="selectHunt">Select Hunt:</label>
+					<select id="selectHunt" class="ui-popup-container ui-popup-active">
+					<option>The Maroon Bulldog</option>
+					<option>Ghosts Of Bulldogs</option>
+					<option>Bulldogs And Crossbones</option>
+					<option>Crossed Paws And Treasure</option>
+					</select>
+				</li>
+				<div class="ui-popup-container ui-popup-active" id="select-choice-a-listbox-popup" 
+				tabindex="0" style="max-width: 679px; top: 436px; left: 89px;"><div 
+				id="select-choice-a-listbox" class="ui-selectmenu ui-popup ui-body-inherit ui-overlay-shadow ui-corner-all">
+				<div class="ui-header ui-bar-a ui-screen-hidden">
+				<h1 class="ui-title"></h1></div>
+				<ul class="ui-selectmenu-list ui-listview ui-group-theme-a" id="select-choice-a-menu" 
+				role="listbox" aria-labelledby="select-choice-a-button" data-theme="a">
+				<li data-option-index="0" data-icon="false" class="ui-first-child" role="option" aria-selected="true">
+				<a href="#" tabindex="-1" class="ui-btn ui-btn-active">Option 1</a></li>
+				<li data-option-index="1" data-icon="false" class="" role="option" aria-selected="false">
+				<a href="#" tabindex="-1" class="ui-btn">Option 2</a></li>
+				<li data-option-index="2" data-icon="false" class="" role="option" aria-selected="false">
+				<a href="#" tabindex="-1" class="ui-btn">Option 3</a></li>
+				<li data-option-index="3" data-icon="false" class="ui-last-child" role="option" aria-selected="false">
+				<a href="#" tabindex="-1" class="ui-btn">Option 4</a></li>
+				</ul></div>
+				</div>
+					
+				<input type="submit" id="button" value="Let the Hunt Begin" />
+			</ul>
+			</fieldset>
+		</form>
     </div><!-- /content -->
 
 </div><!-- /page -->
