@@ -1,65 +1,175 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Scaventure - the Adventure Awaits</title>
+    <title>Scaventure - the Adventure Awaits</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="assets/scaventure.min.css" />
     <link rel="stylesheet" href="assets/jquery.mobile.icons.min.css" />
     <link rel="stylesheet" href="assets/jquery.mobile.structure-1.4.2.min.css" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Seaweed+Script">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Abel">
+
     <script src="assets/jquery-1.11.1.min.js"></script>
     <script src="assets/jquery.mobile-1.4.2.min.js"></script>
+
+    <script>
+    // function to read storage and init form
+    function checkStorage() {
+        // check if local storage available
+        if (window.localStorage) {
+            var key, value, field;
+            // loop through local storage
+            for (var i = 0; i < localStorage.length; i++) {
+                // retrieve the key
+                key = localStorage.key(i);
+                
+                // set the field from the key
+                field = document.getElementById(key);
+                
+                // check for field and assign value
+                if (field) {
+                    // retrieve the value
+                    value = unescape(localStorage.getItem(key));
+                    // set the field value
+                    field.value = value; 
+                }
+            } // end for loop
+        } // end local storage check 
+    } // end function
     
-    <!-- 
-    Clue 1 - to update to Name of Location
-    Change locks to Stars when updates
-     -->
+    // set the localStorage with the changed field
+    function changeField(elKey, elValue) {
+        // check if local storage available
+        if (window.localStorage) {
+            var key, value;
+            
+            // set key to form field id
+            key = elKey;
+            
+            // set value to form field value
+            value = elValue;
+            
+            // try to set item in local storage 
+            try {
+                localStorage.setItem(key, value); 
+            }
+            catch (err) {
+                if (err.code == QUOTA_EXCEEDED_ERR) {
+                    alert('localStorage ran out of memory.'); }
+                }
+            } else {
+                alert('localStorage is not supported.');
+            } 
+        }
+    // initialize our form from storage
+    window.addEventListener('load',checkStorage,false);
+    </script>
+    
+    <script>
+    $(document).ready(function(){
+        city = localStorage.getItem('city');
+        hunt = localStorage.getItem('hunt');
+        if (city !== null && hunt !== null){
+            //Populate Header with City > Hunt
+            $("#header").html(city + " > " + hunt);
+            
+            
+            //load the json object into the local storage
+            var json;
+            var output = "";
+            $.getJSON("assets/scaventureJSON.json", function(result) {
+                json = result;
+
+                $.each(json.scaventure.cities, function(key, value) {
+                    if (value.name == city){
+                       $.each(json.scaventure.cities[key].hunt, function(key1, value) {
+                            if (value.name == hunt){
+                                $("#huntDesc").text("Description: " + value.desc);
+
+                                $.each(json.scaventure.cities[key].hunt[key1].clues, function(key2, value) {
+                                    var clueIndex = key2 + 1;
+                                    var clue = value.desc;    
+
+                                    output += "<div id='"+ city + "_" + hunt + "_clue" + clueIndex + "'><h1>Clue " + clueIndex + "</h1><br><p>" + clue + "</p></div>"; 
+
+                                    $("#clues").html(output);
+                                });  
+
+                            }
+                        });          
+                    } 
+                });
+            });
+
+            $("#cityList").bind("change", function(){
+                var city = $("#cityList").val();
+                changeField('city', city);
+
+                $("#huntList").empty();
+                
+                // console.log(json.scaventure.cities.name);
+
+                $.each(json.scaventure.cities, function(key, value) {
+                    if (value.name == city){
+                       $.each(json.scaventure.cities[key].hunt, function(key, value) {
+                            $("#huntList").append($("<option></option>").attr("value",value.name).text(value.name));
+                            $("#huntList").trigger("change");
+                        });          
+                    } 
+                });
+                $("#huntList").trigger("change");
+            });
+
+            $("#huntList").bind("change", function(){
+                var hunt = $("#huntList").val();
+                changeField('hunt', hunt);
+            });
+        }
+        
+    });
+    </script>
 </head>
 <body>
+    <div data-role="page">
+    <!-- header -->
+    <div data-role="header"> 
+        <h1 id="header"></h1> 
+    </div>
 
-<div data-role="page">
+    <!-- content -->
+    <div data-role="content" data-inset="true">
+        <div data-role="fieldcontain">
+            <div id="huntDesc"></div>
+        </div>
+            <div id="clues"></div>
+            <ul>
+                <li><div id="iconState1">CLUE</div><li>
+                <!-- hidden description -->
+                <div id="descState1">
+                <div id="clueDesc1"></div>
+                <input type="submit" id="button" value="X Marks" />
+                <!-- Confirms the location and opens next clue -->
+                </div>
+                
+                <li><div id="iconState2">CLUE</div><li>
+                <!-- hidden description -->
+                <div id="descState3">
+                <div id="clueDesc2"></div>
+                <input type="submit" id="button" value="X Marks" />
+                <!-- Confirms the location and opens next clue -->
+                </div>
+                
+                <li><div id="iconState3">CLUE</div><li>
+                <!-- hidden description -->
+                <div id="descState3">
+                <div id="clueDesc3"></div>
+                <input type="submit" id="button" value="X Marks" />
+                <!-- Confirms the location and concludes games -->
+                </div>  
+                
+            </ul>
 
-    <div data-role="header" class="pirate">
-        <h1>Scaventure</h1>
-    </div><!-- /header -->
-
-    <div data-role="main" class="ui-content">
-    	<img src="assets/mustache.png"/>
-        <br/>
-        <!-- Below should be populated from local storage -->
-        <!-- City and Hunt Name -->
-        <div id="huntName"></div>
-        <div id="huntDesc"></div>
-        	<ul>
-        		<li><div id="iconState1">CLUE</div><li>
-        		<!-- hidden description -->
-        		<div id="descState1">
-        		<div id="clueDesc1"></div>
-        		<input type="submit" id="button" value="X Marks" />
-        		<!-- Confirms the location and opens next clue -->
-        		</div>
-        		
-        		<li><div id="iconState2">CLUE</div><li>
-        		<!-- hidden description -->
-        		<div id="descState3">
-        		<div id="clueDesc2"></div>
-        		<input type="submit" id="button" value="X Marks" />
-        		<!-- Confirms the location and opens next clue -->
-        		</div>
-        		
-        		<li><div id="iconState3">CLUE</div><li>
-        		<!-- hidden description -->
-        		<div id="descState3">
-        		<div id="clueDesc3"></div>
-        		<input type="submit" id="button" value="X Marks" />
-        		<!-- Confirms the location and concludes games -->
-				</div>	
-				
-			</ul>
-			</fieldset>
-		</form>
     </div><!-- /content -->
-
-</div><!-- /page -->
-
+    </div><!-- /page -->
 </body>
 </html>
