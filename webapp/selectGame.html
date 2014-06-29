@@ -55,14 +55,14 @@
 			//console.log(json);
 					
 			console.log("Scaventure " + json.scaventure.cities.length);
-		
 
-		for (var c=0; c < json.scaventure.cities.length; c++){
-			var city = json.scaventure.cities[c].name;
-			$('#cityList').append('<option value=' + city + '>' + city + '</option>');
-			console.log(city);
-			
-		}
+            $.each(json.scaventure.cities, function(key, value) {
+                $('#cityList')
+                        .append($("<option></option>")
+                                .attr("value",value.name)
+                                .text(value.name));
+            });
+            $("#cityList").trigger("change");
 	    });
 	});
 	</script>
