@@ -2,11 +2,11 @@
     "scaventure": {
         "cities": [
             {
-                "name": "atlanta",
+                "name": "Atlanta",
                 "hunt": [
                     {
                         "order": 0,
-                        "name": "Historic",
+                        "name": "Historic Atlanta",
                         "desc": "Hunt for Historical sites in Atlanta, GA",
                         "clues": [
                             {
@@ -46,7 +46,7 @@
                     },
                     {
                         "order": 1,
-                        "name": "Landmarks",
+                        "name": "Atlanta Landmarks",
                         "desc": "Hunt for Atlanta, GA Landmarks",
                         "clues": [
                             {
@@ -86,7 +86,7 @@
                     },
                     {
                         "order": 2,
-                        "name": "Popular Venues",
+                        "name": "Popular Atlanta Venues",
                         "desc": "Hunt Popular Venues in Atlanta, GA",
                         "clues": [
                             {
@@ -127,11 +127,11 @@
                 ]
             },
             {
-                "name": "norcross",
+                "name": "Norcross",
                 "hunt": [
                     {
                         "order": 0,
-                        "name": "Historic",
+                        "name": "Historic Norcross",
                         "desc": "Hunt for Historical sites in Norcross, GA",
                         "clues": [
                             {
@@ -171,7 +171,7 @@
                     },
                     {
                         "order": 1,
-                        "name": "Landmarks",
+                        "name": "Norcross Landmarks",
                         "desc": "Hunt for Norcross, GA Landmarks",
                         "clues": [
                             {
@@ -211,7 +211,7 @@
                     },
                     {
                         "order": 2,
-                        "name": "Popular Venues",
+                        "name": "Popular Norcross Venues",
                         "desc": "Hunt Popular Venues in Norcross, GA",
                         "clues": [
                             {
@@ -252,11 +252,11 @@
                 ]
             },
             {
-                "name": "roswell",
+                "name": "Roswell",
                 "hunt": [
                     {
                         "order": 0,
-                        "name": "Historic",
+                        "name": "Historic Roswell",
                         "desc": "Hunt for Historical sites in Roswell, GA",
                         "clues": [
                             {
@@ -296,7 +296,7 @@
                     },
                     {
                         "order": 1,
-                        "name": "Landmarks",
+                        "name": "Roswell Landmarks",
                         "desc": "Hunt for Roswell, GA Landmarks",
                         "clues": [
                             {
@@ -336,7 +336,7 @@
                     },
                     {
                         "order": 2,
-                        "name": "Popular Venues",
+                        "name": "Popular Roswell Venues",
                         "desc": "Hunt Popular Venues in Roswell, GA",
                         "clues": [
                             {

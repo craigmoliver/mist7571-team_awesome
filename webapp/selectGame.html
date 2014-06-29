@@ -11,59 +11,97 @@
 
     <script src="assets/jquery-1.11.1.min.js"></script>
     <script src="assets/jquery.mobile-1.4.2.min.js"></script>
+
+    <script>
+    // function to read storage and init form
+    function checkStorage() {
+        // check if local storage available
+        if (window.localStorage) {
+            var key, value, field;
+            // loop through local storage
+            for (var i = 0; i < localStorage.length; i++) {
+                // retrieve the key
+                key = localStorage.key(i);
+                
+                // set the field from the key
+                field = document.getElementById(key);
+                
+                // check for field and assign value
+                if (field) {
+                    // retrieve the value
+                    value = unescape(localStorage.getItem(key));
+                    // set the field value
+                    field.value = value; 
+                }
+            } // end for loop
+        } // end local storage check 
+    } // end function
     
-    <script type="text/javascript">
-    	// Database of Cities and Hunts in local storage
-    	//var cityHuntStor = '{"city":["atlanta","norcross","rosewell"],"hunt":"bulldog chase"}';
-    	//$.getJSON(scaventureJSON.json, )
-    	//Check if browser has local storage
-    	function check_local_storage() {
-    		  try {
-    		    return 'localStorage' in window && window['localStorage'] !== null;
-    		  } catch (e) {
-    		    return false;
-    		  }
-    	}
-    	
-    	
-    	
-		function init(){
-			//document.getElementById('submit').addEventListener("click",selectHunt);
-			
-			
-			
-		}
-		
-		function selectHunt(){
-			<!-- Script to load cities and display as options -->
-			document.getElementById('huntList').innerHTML=huntList;
-		    <!-- Script to load hunts per city as options -->
-		}
-		window.addEventListener('load',init);
-	</script>
+    // set the localStorage with the changed field
+    function changeField(elKey, elValue) {
+        // check if local storage available
+        if (window.localStorage) {
+            var key, value;
+            
+            // set key to form field id
+            key = elKey;
+            
+            // set value to form field value
+            value = elValue;
+            
+            // try to set item in local storage 
+            try {
+                localStorage.setItem(key, value); 
+            }
+            catch (err) {
+                if (err.code == QUOTA_EXCEEDED_ERR) {
+                    alert('localStorage ran out of memory.'); }
+                }
+            } else {
+                alert('localStorage is not supported.');
+            } 
+        }
+    // initialize our form from storage
+    window.addEventListener('load',checkStorage,false);
+    </script>
+    
 	<script>
-	$(document).bind('mobileinit',function(){
-	   $.mobile.selectmenu.prototype.options.nativeMenu = false;
-	});
  	$(document).ready(function(){
  		var json;
     	//load the json object into the local storage
+
 	    $.getJSON("assets/scaventureJSON.json", function(result) {
-			result = JSON.stringify(result);
-			json = JSON.parse(result);
-			//console.log(result);
-			//console.log(json);
-					
-			console.log("Scaventure " + json.scaventure.cities.length);
+			json = result;
 
             $.each(json.scaventure.cities, function(key, value) {
-                $('#cityList')
-                        .append($("<option></option>")
-                                .attr("value",value.name)
-                                .text(value.name));
+                $("#cityList").append($("<option></option>").attr("value",value.name).text(value.name));
+                $("#cityList").trigger("change");
             });
-            $("#cityList").trigger("change");
 	    });
+
+        $("#cityList").bind("change", function(){
+            var city = $("#cityList").val();
+            changeField('city', city);
+
+            $("#huntList").empty();
+            
+            // console.log(json.scaventure.cities.name);
+
+            $.each(json.scaventure.cities, function(key, value) {
+                if (value.name == city){
+                   $.each(json.scaventure.cities[key].hunt, function(key, value) {
+                        $("#huntList").append($("<option></option>").attr("value",value.name).text(value.name));
+                        $("#huntList").trigger("change");
+                    });          
+                } 
+            });
+            $("#huntList").trigger("change");
+        });
+
+        $("#huntList").bind("change", function(){
+            var hunt = $("#huntList").val();
+            changeField('hunt', hunt);
+        });
 	});
 	</script>
 </head>
@@ -79,15 +117,21 @@
     <div data-role="main" class="ui-content">
         <img src="assets/images/mustache.png" width="70" height="70" style="float: right; display: block;"></img>
     </div>
+
     <!-- content -->
     <div data-role="content" data-inset="true">
     	<div data-role="fieldcontain">
 			<label for="select-choice-custom" class="select">Select a City:</label>
-			<select name="select-choice-1" id="cityList" data-native-menu="false">
-				
-			</select>
+			<select name="select-choice-1" id="cityList" data-native-menu="false"></select>
 		</div>
     </div>
+    <div data-role="content" data-inset="true">
+        <div data-role="fieldcontain">
+            <label for="select-choice-custom" class="select">Select a Hunt:</label>
+            <select name="select-choice-1" id="huntList" data-native-menu="false"></select>
+        </div>
+    </div>
+    <a href="theHunt.html" data-role="button">Start Game</a> 
     <!-- /content -->
 
     <div data-role="footer">
