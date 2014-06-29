@@ -1,13 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>My Page</title>
+	<title>Scaventure</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="assets/jquery.mobile.icons.min.css" />
     <link rel="stylesheet" href="assets/jquery.mobile.structure-1.4.2.min.css" />
     <link rel="stylesheet" href="assets/scaventure.css" />
     <script src="assets/jquery.js"></script>
     <script src="assets/jquery.mobile-1.4.2/jquery.mobile-1.4.2.js"></script>
+    <script type="text/javascript">
+    	// Database of Cities and Hunts in local storage
+    	var cityHuntList;
+    	
+		function init(){
+			document.getElementById('submit').addEventListener("click",selectHunt);
+			document.getElementById("selectHunt").focus();
+		}
+		function selectHunt(){
+			<!-- Script to load cities and display as options -->
+			for (var i=0; i<cityHuntList.length; i++){
+				var option = "<option role='option'>" + cityHuntList[i].hunt+"</option>";
+				
+				cdTable += "<tr>";
+				cdTable += "<td>"+cdArray.CDs[i].artist+ "</td>";
+				cdTable += "<td>"+cdArray.CDs[i].album+ "</td>";
+				cdTable += "</tr>";
+			}
+			cdTable += "</table>"
+			document.getElementById('cdList').innerHTML=cdTable;
+		    <!-- Script to load hunts per city as options -->
+		}
+		window.addEventListener('load',init);
+	</script>
+    
 </head>
 <body>
 
@@ -20,12 +45,13 @@
     <div data-role="main" class="ui-content">
     	<img src="assets/mustache.png"/>
         <br/>
-        //below should be populated from local storage
+        <!-- Below should be populated from local storage -->
         <form>
 			<fieldset>
 			<ul role="listbox" class="ui-selectmenu-list ui-listview ui-group-theme-a" >
 		        <li><label for="selectCity">Select City:</label>
 					<select id="selectCity" class="ui-popup-container ui-popup-active">
+					<div id="cityList"></div>
 					<option role="option" >Athens</option>
 					<option role="option" >Atlanta</option>
 					<option role="option" >Norcross</option>
