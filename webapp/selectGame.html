@@ -72,7 +72,7 @@
 
 	    $.getJSON("assets/scaventureJSON.json", function(result) {
 			json = result;
-
+			console.log("This is a test 3");
             $.each(json.scaventure.cities, function(key, value) {
                 $("#cityList").append($("<option></option>").attr("value",value.name).text(value.name));
                 $("#cityList").trigger("change");
