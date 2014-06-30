@@ -30,6 +30,7 @@
 
             loadMap();
             setLocation();
+            getDistanceToClue();
         });
 
         function getClientPosition(position) {
@@ -100,7 +101,7 @@
             });
         }
 
-        // calculate distance function
+        /*
         function calculateDistance(disLatLng) {
             // set up variables and objects for distance
             var conEarth = 3963.19; // ave. miles circumference
@@ -117,6 +118,54 @@
             document.getElementById('divDistFromLDN').innerHTML = distFromLDN + ' mi.';
             document.getElementById('divDistFromNYC').innerHTML = distFromNYC + ' mi.';
             document.getElementById('divDistFromSFO').innerHTML = distFromSFO + ' mi.';
+        }*/
+
+        // calculate distance function
+        function getDistanceToClue(myLatLng) {
+            var selectedCity = "atlanta";
+            var selectedHunt = 0;
+            var nextClue = 1;
+            $.getJSON("assets/scaventureJSON.json", function(result) {
+                var lat = 0;
+                var lng = 0;
+                $.each(result.scaventure.cities, function() {
+                    if (this.name === selectedCity) {
+                        console.log("City Name - " + this.name);
+                        $.each(this.hunt, function() {
+                            if (this.order === selectedHunt) {
+                                console.log("Hunt Name - " + this.name);
+                                $.each(this.clues, function() {
+                                    if (this.order === nextClue) {
+                                        console.log("Clue Name - " + this.name);
+                                        lat = parseFloat(this.location.latitude);
+                                        lng = parseFloat(this.location.longitude)
+                                        console.log(lat + " - " + lng);
+                                        var clueLatLng = new google.maps.LatLng(lat, lng);
+                                        var distanceFrom = calculateDistanceNextClue(myLatLng, clueLatLng);
+                                        areWeThereYet(distanceFrom);
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
+            });
+        }
+
+        function calculateDistanceNextClue(myLatLng, clueLatLng) {
+            // set up variables and objects for distance
+            var conEarth = 3963.19; // ave. miles circumference
+            var gmapsSpherLib = google.maps.geometry.spherical;
+            var distTo = gmapsSpherLib.computeDistanceBetween(myLatLng,clueLatLng,conEarth).toFixed(2);
+            console.log("Distance To - " + distTo);
+            $("#divDistanceFrom").html(distTo + " mi.");
+            return distTo;
+        }
+
+        function areWeThereYet(distanceFrom) {
+            var areWe = (distanceFrom < 0.25);
+            console.log("Are We There Yet? - " + areWe);
+            $("#areWeThereYet").html(areWe);
         }
 
         function geoSuccess(position) {
@@ -135,7 +184,7 @@
             // reverse geocode the lat and lng
             reverseGeoCode(myLatLng);
             // calculate the distance to points of interest
-            calculateDistance(myLatLng);
+            getDistanceToClue(myLatLng);
             // update our status
             document.getElementById('geoStatus').innerHTML = 'Location Retrieved';
         }
@@ -190,6 +239,10 @@
 
     <div data-role="main" class="ui-content">
         <div id="map_canvas"></div>
+
+        <h2>Are we there yet?</h2>
+        <div id="areWeThereYet"></div>
+
         <div id="location">
             <table id="status">
                 <tr>
@@ -208,17 +261,11 @@
         <div id="distance">
             <table id="cityDistance">
                 <tr>
-                    <td>London:</td>
-                    <td class="numDistance"><div id="divDistFromLDN"></div></td>
+                    <td>Distance From:</td>
+                    <td><div id="divDistanceFrom"></div></td>
                 </tr>
-                <tr>
-                    <td>New York:</td>
-                    <td class="numDistance"><div id="divDistFromNYC"></div></td>
-                </tr>
-                <tr>
-                    <td>San Francisco:</td>
-                    <td class="numDistance"><div id="divDistFromSFO"></div></td>
-                </tr>
+
+
             </table>
         </div>
     </div><!-- /content -->
