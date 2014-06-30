@@ -6,11 +6,12 @@
     <link rel="stylesheet" href="assets/scaventure.min.css" />
     <link rel="stylesheet" href="assets/jquery.mobile.icons.min.css" />
     <link rel="stylesheet" href="assets/jquery.mobile.structure-1.4.2.min.css" />
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Seaweed+Script">
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Abel">
-
     <script src="assets/jquery-1.11.1.min.js"></script>
     <script src="assets/jquery.mobile-1.4.2.min.js"></script>
+
+    <!--Google Fonts-->
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Seaweed+Script">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Abel">
 
     <script>
     // function to read storage and init form
@@ -38,8 +39,8 @@
     } // end function
     
     // set the localStorage with the changed field
-    function changeField(elKey, elValue) {
-        // check if local storage available
+    function updateStorage(elKey, elValue) {
+        // check if local storage is available
         if (window.localStorage) {
             var key, value;
             
@@ -51,9 +52,12 @@
             
             // try to set item in local storage 
             try {
-                localStorage.setItem(key, value); 
+                localStorage.setItem(key, value);
+                var savedVal = localStorage.getItem(key);
+                console.log("Saved [" + key + "] into localStorage with the Value => " + savedVal);
             }
             catch (err) {
+                //unable to set item in local storage
                 if (err.code == QUOTA_EXCEEDED_ERR) {
                     alert('localStorage ran out of memory.'); }
                 }
@@ -61,69 +65,63 @@
                 alert('localStorage is not supported.');
             } 
         }
-    // initialize our form from storage
+    // initialize our form from local storage
     window.addEventListener('load',checkStorage,false);
     </script>
     
     <script>
     $(document).ready(function(){
-        city = localStorage.getItem('city');
-        hunt = localStorage.getItem('hunt');
-        if (city !== null && hunt !== null){
-            //Populate Header with City > Hunt
+        
+        //<!--CRAIG COPY FROM HERE BELOW -->
+
+        //get json from local storage
+        var json = JSON.parse(localStorage.getItem('json'));
+        //get city/hunt from local storage
+        var city = localStorage.getItem('city');
+        var cityID = localStorage.getItem('cityID');
+        var hunt = localStorage.getItem('hunt');
+        var huntID = localStorage.getItem('huntID');
+
+        //get player's current clue ID
+        var onClueID = localStorage.getItem('onClueID');
+
+        //if local storage does not have 'onClueID', set it to 0
+        if (onClueID == null){
+            onClueID = 0;
+        }
+
+        //ensure local storage is not missing city, cityID, hunt, and huntID
+        if (city !== null && cityID != null && hunt !== null && huntID != null){
+            console.log("Starting Scaventure with City => " + city + " (ID: => " + cityID + ") and Hunt => " + hunt + " (ID: => " + huntID + ")");
+            console.log("Player is on Clue ID => " + onClueID);
+
+            //populate Header with City > Hunt
             $("#header").html(city + " > " + hunt);
-            
-            
-            //load the json object into the local storage
-            var json;
+            //populate hunt description DIV
+            $("#huntDesc").text("Description: " + json.scaventure.cities[cityID].hunt[huntID].desc);
+
+            //populate clues output based on city and hunt and player's 'onClueID'
             var output = "";
-            $.getJSON("assets/scaventureJSON.json", function(result) {
-                json = result;
 
-                $.each(json.scaventure.cities, function(key, value) {
-                    if (value.name == city){
-                       $.each(json.scaventure.cities[key].hunt, function(key1, value) {
-                            if (value.name == hunt){
-                                $("#huntDesc").text("Description: " + value.desc);
+            $.each(json.scaventure.cities[cityID].hunt[huntID].clues, function(key, value) {
+                //gather clue index and clue
+                var clueIndex = key + 1;
+                var clue = value.desc;    
 
-                                $.each(json.scaventure.cities[key].hunt[key1].clues, function(key2, value) {
-                                    var clueIndex = key2 + 1;
-                                    var clue = value.desc;    
-
-                                    output += "<div id='"+ city + "_" + hunt + "_clue" + clueIndex + "'><h1>Clue " + clueIndex + "</h1><br><p>" + clue + "</p></div>"; 
-
-                                    $("#clues").html(output);
-                                });  
-
-                            }
-                        });          
-                    } 
-                });
-            });
-
-            $("#cityList").bind("change", function(){
-                var city = $("#cityList").val();
-                changeField('city', city);
-
-                $("#huntList").empty();
+                //print solved clue name with a star
+                if ((clueIndex-1) < onClueID){
+                    output += "<a href='#' class='ui-btn ui-icon-star ui-btn-icon-left'>Clue " + clueIndex + "</a>";      
+                }
+                //print current clue with clue name
+                if ((clueIndex-1) == onClueID){
+                    output += "<div data-role='collapsible'>";
+                    output += "<h1>Clue " + clueIndex + "</h1><p>" + clue + "</p></div>";      
+                }
                 
-                // console.log(json.scaventure.cities.name);
+            }); 
 
-                $.each(json.scaventure.cities, function(key, value) {
-                    if (value.name == city){
-                       $.each(json.scaventure.cities[key].hunt, function(key, value) {
-                            $("#huntList").append($("<option></option>").attr("value",value.name).text(value.name));
-                            $("#huntList").trigger("change");
-                        });          
-                    } 
-                });
-                $("#huntList").trigger("change");
-            });
-
-            $("#huntList").bind("change", function(){
-                var hunt = $("#huntList").val();
-                changeField('hunt', hunt);
-            });
+            //populate clues
+            $("#clues").html(output);
         }
         
     });
@@ -138,38 +136,12 @@
 
     <!-- content -->
     <div data-role="content" data-inset="true">
-        <div data-role="fieldcontain">
+         <div data-role="main" class="ui-content">
             <div id="huntDesc"></div>
-        </div>
             <div id="clues"></div>
-            <ul>
-                <li><div id="iconState1">CLUE</div><li>
-                <!-- hidden description -->
-                <div id="descState1">
-                <div id="clueDesc1"></div>
-                <input type="submit" id="button" value="X Marks" />
-                <!-- Confirms the location and opens next clue -->
-                </div>
-                
-                <li><div id="iconState2">CLUE</div><li>
-                <!-- hidden description -->
-                <div id="descState3">
-                <div id="clueDesc2"></div>
-                <input type="submit" id="button" value="X Marks" />
-                <!-- Confirms the location and opens next clue -->
-                </div>
-                
-                <li><div id="iconState3">CLUE</div><li>
-                <!-- hidden description -->
-                <div id="descState3">
-                <div id="clueDesc3"></div>
-                <input type="submit" id="button" value="X Marks" />
-                <!-- Confirms the location and concludes games -->
-                </div>  
-                
-            </ul>
-
+        </div>
     </div><!-- /content -->
+    <a href="theHunt.html" data-role="button" value=>Am I Here?</a>
     </div><!-- /page -->
 </body>
 </html>

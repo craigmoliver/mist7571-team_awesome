@@ -2,15 +2,34 @@
     "scaventure": {
         "cities": [
             {
+                "name": "UGA MIT",
+                "hunt": [
+                    {
+                    "name": "Demo Hunt 1",
+                    "desc": "Demo Hunt for Team Awesome",
+                    "clues": [
+                        {   
+                        "name": "UGA Gwinnett Campus",
+                        "desc": "The last official class building for UGA MIT students, before the program goes online",
+                        "location": {
+                            "latitude": "33.9980889",
+                            "longitude": "-84.0724477"
+                        },
+                        "fact": "The 2014 MIT Cohort is awesome!",
+                        "imageUrl": "/assets/images/demo_gwinnettcampus.png"
+                        }
+                    ]
+                }
+                ]
+            },
+            {
                 "name": "Atlanta",
                 "hunt": [
                     {
-                        "order": 0,
                         "name": "Historic Atlanta",
                         "desc": "Hunt for Historical sites in Atlanta, GA",
                         "clues": [
                             {
-                                "order": 0,
                                 "name": "Swan House",
                                 "desc": "Designed by famed Atlanta architect Philip Trammell Shutze",
                                 "location": {
@@ -21,7 +40,6 @@
                                 "imageUrl": "/assets/images/atl_swanhouse.png"
                             },
                             {
-                                "order": 1,
                                 "name": "The Varsity",
                                 "desc": "A restaurant chain, iconic in the modern culture of Atlanta, Georgia",
                                 "location": {
@@ -32,7 +50,6 @@
                                 "imageUrl": "/assets/images/atl_varsity.png"
                             },
                             {
-                                "order": 2,
                                 "name": "Ferris Wheel",
                                 "desc": "One-of-a-kind, thrilling look at Atlanta from atop a 200-foot story",
                                 "location": {
@@ -45,12 +62,10 @@
                         ]
                     },
                     {
-                        "order": 1,
                         "name": "Atlanta Landmarks",
                         "desc": "Hunt for Atlanta, GA Landmarks",
                         "clues": [
                             {
-                                "order": 0,
                                 "name": "Swan House",
                                 "desc": "Designed by famed Atlanta architect Philip Trammell Shutze",
                                 "location": {
@@ -61,7 +76,6 @@
                                 "imageUrl": "/assets/images/atl_swanhouse.png"
                             },
                             {
-                                "order": 1,
                                 "name": "The Varsity",
                                 "desc": "A restaurant chain, iconic in the modern culture of Atlanta, Georgia",
                                 "location": {
@@ -72,7 +86,6 @@
                                 "imageUrl": "/assets/images/atl_varsity.png"
                             },
                             {
-                                "order": 2,
                                 "name": "Ferris Wheel",
                                 "desc": "One-of-a-kind, thrilling look at Atlanta from atop a 200-foot story",
                                 "location": {
@@ -85,12 +98,10 @@
                         ]
                     },
                     {
-                        "order": 2,
                         "name": "Popular Atlanta Venues",
                         "desc": "Hunt Popular Venues in Atlanta, GA",
                         "clues": [
                             {
-                                "order": 0,
                                 "name": "Swan House",
                                 "desc": "Designed by famed Atlanta architect Philip Trammell Shutze",
                                 "location": {
@@ -101,7 +112,6 @@
                                 "imageUrl": "/assets/images/atl_swanhouse.png"
                             },
                             {
-                                "order": 1,
                                 "name": "The Varsity",
                                 "desc": "A restaurant chain, iconic in the modern culture of Atlanta, Georgia",
                                 "location": {
@@ -112,7 +122,6 @@
                                 "imageUrl": "/assets/images/atl_varsity.png"
                             },
                             {
-                                "order": 2,
                                 "name": "Ferris Wheel",
                                 "desc": "One-of-a-kind, thrilling look at Atlanta from atop a 200-foot story",
                                 "location": {
@@ -130,12 +139,10 @@
                 "name": "Norcross",
                 "hunt": [
                     {
-                        "order": 0,
                         "name": "Historic Norcross",
                         "desc": "Hunt for Historical sites in Norcross, GA",
                         "clues": [
                             {
-                                "order": 0,
                                 "name": "Gwinnett Mall",
                                 "desc": "This mall was seriously challenged by the opening of Mall of Georgia in 1999 and Sugarloaf Mills (formerly Discover Mills) in 2001",
                                 "location": {
@@ -146,7 +153,6 @@
                                 "imageUrl": "/assets/images/norcross_gwinnettmall.png"
                             },
                             {
-                                "order": 0,
                                 "name": "Historic Downtown Norcross",
                                 "desc": "Downtown to Only Historic District in Gwinnett County Listed in the United States Department of the Interior National Registry of Historic Landmarks",
                                 "location": {
@@ -157,7 +163,6 @@
                                 "imageUrl": "/assets/images/norcross_downtown.png"
                             },
                             {
-                                "order": 0,
                                 "name": "MicroCenter",
                                 "desc": "Is a destination retailer designed to satisfy the dedicated computer user",
                                 "location": {
@@ -170,12 +175,10 @@
                         ]
                     },
                     {
-                        "order": 1,
                         "name": "Norcross Landmarks",
                         "desc": "Hunt for Norcross, GA Landmarks",
                         "clues": [
                             {
-                                "order": 0,
                                 "name": "Gwinnett Mall",
                                 "desc": "This mall was seriously challenged by the opening of Mall of Georgia in 1999 and Sugarloaf Mills (formerly Discover Mills) in 2001",
                                 "location": {
@@ -186,7 +189,6 @@
                                 "imageUrl": "/assets/images/norcross_gwinnettmall.png"
                             },
                             {
-                                "order": 0,
                                 "name": "Historic Downtown Norcross",
                                 "desc": "Downtown to Only Historic District in Gwinnett County Listed in the United States Department of the Interior National Registry of Historic Landmarks",
                                 "location": {
@@ -197,7 +199,6 @@
                                 "imageUrl": "/assets/images/norcross_downtown.png"
                             },
                             {
-                                "order": 0,
                                 "name": "MicroCenter",
                                 "desc": "Is a destination retailer designed to satisfy the dedicated computer user",
                                 "location": {
@@ -210,12 +211,10 @@
                         ]
                     },
                     {
-                        "order": 2,
                         "name": "Popular Norcross Venues",
                         "desc": "Hunt Popular Venues in Norcross, GA",
                         "clues": [
                             {
-                                "order": 0,
                                 "name": "Gwinnett Mall",
                                 "desc": "This mall was seriously challenged by the opening of Mall of Georgia in 1999 and Sugarloaf Mills (formerly Discover Mills) in 2001",
                                 "location": {
@@ -226,7 +225,6 @@
                                 "imageUrl": "/assets/images/norcross_gwinnettmall.png"
                             },
                             {
-                                "order": 0,
                                 "name": "Historic Downtown Norcross",
                                 "desc": "Downtown to Only Historic District in Gwinnett County Listed in the United States Department of the Interior National Registry of Historic Landmarks",
                                 "location": {
@@ -237,7 +235,6 @@
                                 "imageUrl": "/assets/images/norcross_downtown.png"
                             },
                             {
-                                "order": 0,
                                 "name": "MicroCenter",
                                 "desc": "Is a destination retailer designed to satisfy the dedicated computer user",
                                 "location": {
@@ -255,12 +252,10 @@
                 "name": "Roswell",
                 "hunt": [
                     {
-                        "order": 0,
                         "name": "Historic Roswell",
                         "desc": "Hunt for Historical sites in Roswell, GA",
                         "clues": [
                             {
-                                "order": 0,
                                 "name": "Old Mill Park",
                                 "desc": "This bridge and waterfall are favorite spots for amateur and professional photographers, that was burned in 1864 and 1926 and re-built",
                                 "location": {
@@ -271,7 +266,6 @@
                                 "imageUrl": "/assets/images/roswell_mill.png"
                             },
                             {
-                                "order": 1,
                                 "name": "Smith Plantation Home",
                                 "desc": "This home and grounds have become one of the best examples of architectural, cultural, and historical interpretation found in the Southern region",
                                 "location": {
@@ -282,7 +276,6 @@
                                 "imageUrl": "/assets/images/roswell_smithplantation.png"
                             },
                             {
-                                "order": 2,
                                 "name": "Mansell House & Gardens",
                                 "desc": "A 1910 Victorian home, filled with period antiques and surrounded by gardens",
                                 "location": {
@@ -295,12 +288,10 @@
                         ]
                     },
                     {
-                        "order": 1,
                         "name": "Roswell Landmarks",
                         "desc": "Hunt for Roswell, GA Landmarks",
                         "clues": [
                             {
-                                "order": 0,
                                 "name": "Old Mill Park",
                                 "desc": "This bridge and waterfall are favorite spots for amateur and professional photographers, that was burned in 1864 and 1926 and re-built",
                                 "location": {
@@ -311,7 +302,6 @@
                                 "imageUrl": "/assets/images/roswell_mill.png"
                             },
                             {
-                                "order": 1,
                                 "name": "Smith Plantation Home",
                                 "desc": "This home and grounds have become one of the best examples of architectural, cultural, and historical interpretation found in the Southern region",
                                 "location": {
@@ -322,7 +312,6 @@
                                 "imageUrl": "/assets/images/roswell_smithplantation.png"
                             },
                             {
-                                "order": 2,
                                 "name": "Mansell House & Gardens",
                                 "desc": "A 1910 Victorian home, filled with period antiques and surrounded by gardens",
                                 "location": {
@@ -335,12 +324,10 @@
                         ]
                     },
                     {
-                        "order": 2,
                         "name": "Popular Roswell Venues",
                         "desc": "Hunt Popular Venues in Roswell, GA",
                         "clues": [
                             {
-                                "order": 0,
                                 "name": "Old Mill Park",
                                 "desc": "This bridge and waterfall are favorite spots for amateur and professional photographers, that was burned in 1864 and 1926 and re-built",
                                 "location": {
@@ -351,7 +338,6 @@
                                 "imageUrl": "/assets/images/roswell_mill.png"
                             },
                             {
-                                "order": 1,
                                 "name": "Smith Plantation Home",
                                 "desc": "This home and grounds have become one of the best examples of architectural, cultural, and historical interpretation found in the Southern region",
                                 "location": {
@@ -362,7 +348,6 @@
                                 "imageUrl": "/assets/images/roswell_smithplantation.png"
                             },
                             {
-                                "order": 2,
                                 "name": "Mansell House & Gardens",
                                 "desc": "A 1910 Victorian home, filled with period antiques and surrounded by gardens",
                                 "location": {
