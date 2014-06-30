@@ -11,8 +11,8 @@
 
     <script src="assets/jquery-1.11.1.min.js"></script>
     <script src="assets/jquery.mobile-1.4.2.min.js"></script>
-
-    <script>
+    <script type="text/javascript">
+    
     // function to read storage and init form
     function checkStorage() {
         // check if local storage available
@@ -70,74 +70,70 @@
  		var json;
     	//load the json object into the local storage
 
-	    $.getJSON("assets/scaventureJSON.json", function(result) {
+	    $.getJSON("assets/profileJSON.json", function(result) {
 			json = result;
-
-            $.each(json.scaventure.cities, function(key, value) {
-                $("#cityList").append($("<option></option>").attr("value",value.name).text(value.name));
-                $("#cityList").trigger("change");
+			console.log("This is a name " + json.profile.username);
+			
+            $.each(json.profile, function(key, value) {
+                $("#userStats").append($("li").attr("value",value.name).text(value.name));
+                $("#userStats").trigger("change");
             });
 	    });
 
-        $("#cityList").bind("change", function(){
-            var city = $("#cityList").val();
-            changeField('city', city);
-
-            $("#huntList").empty();
+        $("#userStats").bind("change", function(){
+            var city = $("#userStats").val();
+            changeField('username', username);
             
-            // console.log(json.scaventure.cities.name);
-
-            $.each(json.scaventure.cities, function(key, value) {
-                if (value.name == city){
-                   $.each(json.scaventure.cities[key].hunt, function(key, value) {
-                        $("#huntList").append($("<option></option>").attr("value",value.name).text(value.name));
-                        $("#huntList").trigger("change");
-                    });          
-                } 
-            });
-            $("#huntList").trigger("change");
-        });
-
-        $("#huntList").bind("change", function(){
-            var hunt = $("#huntList").val();
-            changeField('hunt', hunt);
+            console.log(json.profile.username);
         });
 	});
-	</script>
+	
+    
+    	
+    
+    
+  	//Load user info from local storage
+  	//function loadUser
+  	//if new user or first vist show profile set up
+  	
+  	//tell them to push user info into user local storage array
+  	
+  	//loop to display profile contents
+  	
+ 		
+    </script>
 </head>
 <body>
-	<div data-role="page">
-    <!-- header -->
+
+<div data-role="page">
+    <!-- /header -->
     <div data-role="header">
         <a href="index.html" data-icon="home">Home</a>
         <h1>Scaventure</h1>
     </div>
     <br/>
-    <!-- logo-->
     <div data-role="main" class="ui-content">
         <img src="assets/images/mustache.png" width="70" height="70" style="float: right; display: block;"></img>
-    </div>
-
-    <!-- content -->
-    <div data-role="content" data-inset="true">
-    	<div data-role="fieldcontain">
-			<label for="select-choice-custom" class="select">Select a City:</label>
-			<select name="select-choice-1" id="cityList" data-native-menu="false"></select>
-		</div>
-    </div>
-    <div data-role="content" data-inset="true">
-        <div data-role="fieldcontain">
-            <label for="select-choice-custom" class="select">Select a Hunt:</label>
-            <select name="select-choice-1" id="huntList" data-native-menu="false"></select>
+    	<div data-role="content" data-inset="true">
+                <h3>Welcome back,<div id="userName"></div></h3>
+                <ul class="profileList" style="list-style-type: none;display:inline;" >
+                <div id="userStats"></div>
+                <li style="display:inline;width:25%;"><a href="#" class="ui-btn ui-icon-star ui-btn-icon-left"><div id=""> 5 </div></a>  Stars Found</li>
+                
+        		<li><div id=""></div>  Hunts Completed</li>
+                
+        		<li><div id=""></div>  Cities Scavenged</li>
+                </ul>
+                <br><br>
+                 
         </div>
-    </div>
-    <a href="theHunt.html" data-role="button">Start Game</a> 
-    <!-- /content -->
+    </div><!-- /content -->
 
     <div data-role="footer">
         <h4>2014 Scaventure - MIST 7571 | Team Awesome</h4>
     </div><!-- /footer -->
 
 </div><!-- /page -->
+
 </body>
 </html>

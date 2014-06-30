@@ -1,0 +1,34 @@
+{
+    "profile":{
+        "username":"CoolRunning",
+        "email":"1@2.com",
+        "firstName":"Guest",
+        "lastName":"Last",
+        "cities":[
+            {
+                "name":"Atlanta",
+                "huntsComp": [
+                    {
+                        clueStatus":"-1",
+                        "order": 0,
+                        "name":"Something",
+                        "desc":"soemthing",
+                        "cluesComp": [
+                            {
+                                "order": 0,
+                                "name":"something",
+                                "desc":"something",
+                                "location": {
+                                    "latitude":"",
+                                    "longitude":""
+                                },
+                                "fact":"",
+                                "imageUrl":""
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
