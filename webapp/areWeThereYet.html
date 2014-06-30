@@ -19,7 +19,7 @@
             background-color:#005599;
             margin:0 auto;
             width:90%;
-            height:450px;
+            height:300px;
         }
     </style>
 </head>
@@ -75,12 +75,22 @@
     </div><!-- /content -->
 </div><!-- /page -->
 
-<div data-role="dialog" id="dialogFoundIt">
+<div data-role="dialog" id="dialogFound">
     <div data-role="header">
         <h1>Woot!</h1>
     </div>
     <div data-role="content">
         <h1>You've found it!</h1>
+        <a href="#" data-role="button" data-rel="back" data-theme="b">Continue</a>
+    </div>
+</div><!-- /dialog -->
+
+<div data-role="dialog" id="dialogNotFound">
+    <div data-role="header">
+        <h1>Sorry :-(</h1>
+    </div>
+    <div data-role="content">
+        <h1>You're not there yet.</h1>
         <a href="#" data-role="button" data-rel="back" data-theme="b">Continue</a>
     </div>
 </div><!-- /dialog -->
@@ -182,10 +192,17 @@
     // checks if current location is close enough to the
     function areWeThereYet(distanceFrom) {
         console.log("areWeThereYet(" + distanceFrom + ")");
-        var areWe = distanceFrom < 0.25;
-        console.log("areWeThereYet? " + areWe);
 
-        $.mobile.changePage("#dialogFoundIt", { transition: 'pop', changeHash: true, role: 'dialog' });
+        // is found if distance is closer than 1/4 mile
+        var isFound = distanceFrom < 0.25;
+        console.log("isFound? '" + isFound + "'");
+
+        // open appropriate dialog
+        if (isFound) {
+            $.mobile.changePage("#dialogFound", { transition: 'pop', changeHash: true, role: 'dialog' });
+        } else {
+            $.mobile.changePage("#dialogNotFound", { transition: 'pop', changeHash: true, role: 'dialog' });
+        }
     }
 
     function geoSuccess(position) {
