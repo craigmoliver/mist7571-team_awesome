@@ -9,7 +9,7 @@
                 "name":"Atlanta",
                 "huntsComp": [
                     {
-                        clueStatus":"-1",
+                        "clueStatus":"-1",
                         "order": 0,
                         "name":"Something",
                         "desc":"soemthing",

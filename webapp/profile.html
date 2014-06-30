@@ -65,7 +65,7 @@
     // initialize our form from storage
     window.addEventListener('load',checkStorage,false);
     </script>
-    
+
 	<script>
  	$(document).ready(function(){
  		var json;
@@ -74,7 +74,7 @@
 	    $.getJSON("assets/profileJSON.json", function(result) {
 			json = result;
 			console.log("This is a name " + json.profile.username);
-			
+
             $.each(json.profile, function(key, value) {
                 $("#userStats").append($("li").attr("value",value.name).text(value.name));
                 $("#userStats").trigger("change");
@@ -84,13 +84,13 @@
         $("#userStats").bind("change", function(){
             var city = $("#userStats").val();
             changeField('username', username);
-            
+
             console.log(json.profile.username);
         });
 	});
-	
-    
-    	
+
+
+
     
     
   	//Load user info from local storage
@@ -100,8 +100,8 @@
   	//tell them to push user info into user local storage array
   	
   	//loop to display profile contents
-  	
- 		
+
+
     </script>
 </head>
 <body>
