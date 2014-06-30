@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <title>Scaventure - the Adventure Awaits</title>
+	<title>Scaventure - the Adventure Awaits</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="assets/scaventure.min.css" />
     <link rel="stylesheet" href="assets/jquery.mobile.icons.min.css" />
@@ -63,36 +62,33 @@
             } 
         }
     // initialize our form from storage
+    console.log("This is a test1 ");	
     window.addEventListener('load',checkStorage,false);
-    </script>
-
-	<script>
- 	$(document).ready(function(){
- 		var json;
-    	//load the json object into the local storage
-
+	</script>
+    
+	<script type="text/javascript">
+	//load the json object into the local storage
+	$(window).load(function(){
+		var json;
+		console.log("This is a test2 ");
+		
 	    $.getJSON("assets/profileJSON.json", function(result) {
-			json = result;
-			console.log("This is a name " + json.profile.username);
-
-            $.each(json.profile, function(key, value) {
-                $("#userStats").append($("li").attr("value",value.name).text(value.name));
-                $("#userStats").trigger("change");
+	    	console.log("This is a test 31");
+	    	json = result;
+			console.log("This is a name ");
+			
+            $(json.profile, function() {
+                $("#username").html(json.profile.username);
+                $("#email").html(json.profile.email);
+                $("#firstName").html(json.profile.firstName);
+                $("#cities").html(json.profile.cities.length);
+                $("#huntsComp").html(json.profile.cities.huntsComp.length);
+                $("#cluesComp").html(json.profile.cities.cluesComp.length);
             });
 	    });
 
-        $("#userStats").bind("change", function(){
-            var city = $("#userStats").val();
-            changeField('username', username);
-
-            console.log(json.profile.username);
-        });
 	});
-
-
-
-    
-    
+ 	
   	//Load user info from local storage
   	//function loadUser
   	//if new user or first vist show profile set up
@@ -100,8 +96,7 @@
   	//tell them to push user info into user local storage array
   	
   	//loop to display profile contents
-
-
+  	
     </script>
 </head>
 <body>
@@ -116,15 +111,30 @@
     <div data-role="main" class="ui-content">
         <img src="assets/images/mustache.png" width="70" height="70" style="float: right; display: block;"></img>
     	<div data-role="content" data-inset="true">
-                <h3>Welcome back,<div id="userName"></div></h3>
-                <ul class="profileList" style="list-style-type: none;display:inline;" >
-                <div id="userStats"></div>
-                <li style="display:inline;width:25%;"><a href="#" class="ui-btn ui-icon-star ui-btn-icon-left"><div id=""> 5 </div></a>  Stars Found</li>
+                <h3>Welcome back,<div id="firstName" class="pirate"></div></h3>
+                <div class="profileList" style="list-style-type: none;display:inline;" >
                 
-        		<li><div id=""></div>  Hunts Completed</li>
+        		<div id="username"></div>
+        		<div id="email"></div>
+        		<div id="cities">  Cities Scavenged</div>
+                <div id="huntsComp"> Hunts Completed</div>
+                <div id="cluesComp"> Clues Solved</div>
+                </div>
                 
-        		<li><div id=""></div>  Cities Scavenged</li>
-                </ul>
+                <!-- Only seen when the user hasn't set up a profile -->
+                <div>
+                	<form>
+                	<label for="username">First Name</label>
+		            <input name="username" id="username" value="">
+                	<label for="firstName">Username</label>
+		            <input name="firstName" id="firstName" value="">
+		            <label for="email">Email</label>
+		            <input name="email" id="email" value="" type="email">
+		            <label for="password">Password</label>
+		            <input name="password" id="password" value="" autocomplete="off" type="password" />
+		            <input value="Update" data-theme="a" type="button">
+		        	</form>
+                </div>
                 <br><br>
                  
         </div>
