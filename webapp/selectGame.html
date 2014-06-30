@@ -6,11 +6,12 @@
     <link rel="stylesheet" href="assets/scaventure.min.css" />
     <link rel="stylesheet" href="assets/jquery.mobile.icons.min.css" />
     <link rel="stylesheet" href="assets/jquery.mobile.structure-1.4.2.min.css" />
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Seaweed+Script">
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Abel">
-
     <script src="assets/jquery-1.11.1.min.js"></script>
     <script src="assets/jquery.mobile-1.4.2.min.js"></script>
+
+    <!--Google Fonts-->
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Seaweed+Script">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Abel">
 
     <script>
     // function to read storage and init form
@@ -38,8 +39,8 @@
     } // end function
     
     // set the localStorage with the changed field
-    function changeField(elKey, elValue) {
-        // check if local storage available
+    function updateStorage(elKey, elValue) {
+        // check if local storage is available
         if (window.localStorage) {
             var key, value;
             
@@ -51,9 +52,12 @@
             
             // try to set item in local storage 
             try {
-                localStorage.setItem(key, value); 
+                localStorage.setItem(key, value);
+                var savedVal = localStorage.getItem(key);
+                console.log("Saved [" + key + "] into localStorage with the Value => " + savedVal);
             }
             catch (err) {
+                //unable to set item in local storage
                 if (err.code == QUOTA_EXCEEDED_ERR) {
                     alert('localStorage ran out of memory.'); }
                 }
@@ -61,52 +65,82 @@
                 alert('localStorage is not supported.');
             } 
         }
-    // initialize our form from storage
+    // initialize our form from local storage
     window.addEventListener('load',checkStorage,false);
     </script>
     
 	<script>
  	$(document).ready(function(){
- 		var json;
-    	//load the json object into the local storage
+        var json;
 
+    	//load the json object into the local storage and initialize cities
 	    $.getJSON("assets/scaventureJSON.json", function(result) {
-			json = result;
+            result = JSON.stringify(result);
+            updateStorage('json', result);
+	    
 
+            //retrieve json data from local storage
+            json = JSON.parse(localStorage.getItem('json'));
+
+
+            //populate city select with cities
             $.each(json.scaventure.cities, function(key, value) {
-                $("#cityList").append($("<option></option>").attr("value",value.name).text(value.name));
-                $("#cityList").trigger("change");
+                console.log("Scaventure City [" + key + "] => " + value.name);
+                $("#cityList").append($("<option></option>").attr("value",key).text(value.name));
+
+                //trigger change to re-initialize select options when loop hits the last city in array
+                if (key == json.scaventure.cities.length-1){
+                    $("#cityList").trigger("change");
+                }
             });
-	    });
+        });
 
+        //dynamically populate hunt select based on city selection
         $("#cityList").bind("change", function(){
-            var city = $("#cityList").val();
-            changeField('city', city);
+            //get city selected
+            var cityID = $("#cityList").prop("selectedIndex");
+            var city = $("#cityList option:selected").text();
+            console.log("City Selected ID => " + cityID + " Value => " + city);
 
+            //update local storage with city
+            updateStorage('cityID', cityID);
+            updateStorage('city', city);
+
+            //empty hunt select options
             $("#huntList").empty();
-            
-            // console.log(json.scaventure.cities.name);
 
+            //populate hunt select with hunts based on city selection
             $.each(json.scaventure.cities, function(key, value) {
                 if (value.name == city){
                    $.each(json.scaventure.cities[key].hunt, function(key, value) {
-                        $("#huntList").append($("<option></option>").attr("value",value.name).text(value.name));
-                        $("#huntList").trigger("change");
+                        console.log(city + " Scaventure Hunt [" + key + "] => " + value.name);
+                        $("#huntList").append($("<option></option>").attr("value",key).text(value.name));
+
+                        //trigger change to re-initialize select options when loop hits the last hunt in array
+                        if (key == json.scaventure.cities[key].hunt.length-1){
+                            $("#huntList").trigger("change");
+                        }
+                        
                     });          
                 } 
             });
-            $("#huntList").trigger("change");
         });
 
         $("#huntList").bind("change", function(){
-            var hunt = $("#huntList").val();
-            changeField('hunt', hunt);
+            //get hunt selected
+            var huntID = $("#huntList").prop("selectedIndex");
+            var hunt = $("#huntList option:selected").text();
+            console.log("Hunt Selected ID => " + huntID + " Value => " + hunt);
+
+            //update local storage with city
+            updateStorage('huntID', huntID);
+            updateStorage('hunt', hunt);
         });
 	});
 	</script>
 </head>
 <body>
-	<div data-role="page">
+	<div data-role="page"><!-- page -->
     <!-- header -->
     <div data-role="header">
         <a href="index.html" data-icon="home">Home</a>
@@ -121,22 +155,23 @@
     <!-- content -->
     <div data-role="content" data-inset="true">
     	<div data-role="fieldcontain">
-			<label for="select-choice-custom" class="select">Select a City:</label>
+			<label for="cityList" class="select">Select a City:</label>
 			<select name="select-choice-1" id="cityList" data-native-menu="false"></select>
 		</div>
     </div>
     <div data-role="content" data-inset="true">
         <div data-role="fieldcontain">
-            <label for="select-choice-custom" class="select">Select a Hunt:</label>
+            <label for="huntList" class="select">Select a Hunt:</label>
             <select name="select-choice-1" id="huntList" data-native-menu="false"></select>
         </div>
     </div>
     <a href="theHunt.html" data-role="button">Start Game</a> 
     <!-- /content -->
 
+    <!-- /footer -->
     <div data-role="footer">
         <h4>2014 Scaventure - MIST 7571 | Team Awesome</h4>
-    </div><!-- /footer -->
+    </div>
 
 </div><!-- /page -->
 </body>
