@@ -7,10 +7,13 @@
     <link rel="stylesheet" href="assets/scaventure.min.css" />
     <link rel="stylesheet" href="assets/jquery.mobile.icons.min.css" />
     <link rel="stylesheet" href="assets/jquery.mobile.structure-1.4.2.min.css" />
-    <script src="assets/jquery-1.11.1.js"></script>
-    <script src="assets/jquery.mobile-1.4.2.js"></script>
+    <script src="assets/jquery-1.11.1.min.js"></script>
+    <script src="assets/jquery.mobile-1.4.2.min.js"></script>
 
-    <!---->
+    <!--Google Fonts-->
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Seaweed+Script">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Abel">
+
     <script src="http://maps.google.com/maps/api/js?sensor=false&libraries=geometry"></script>
     <script type="text/javascript" src="assets/gmap3.js"></script>
 
@@ -25,54 +28,69 @@
 </head>
 <body>
 
-<div data-role="page">
+<div data-role="page"><!-- page -->
+    <!-- header -->
     <div data-role="header">
+        <a href="profile.html" data-icon="home">Home</a>
         <h1>Scaventure</h1>
-    </div><!-- /header -->
-
+    </div>
+    <br/>
+    <!-- logo-->
     <div data-role="main" class="ui-content">
-        <div id="map_canvas"></div>
+        <img src="assets/images/mustache.png" width="70" height="70" style="float: right; display: block;"></img>
+    </div>
 
-        <button class="ui-btn" id="btnAreWeThereYet">Are We There Yet?</button>
+    <!-- content -->
+    <div data-role="content" data-inset="true">
+        <div class="ui-grid-a my-breakpoint">
+            <div class="ui-block-a my-breakpoint">
+                <div id="map_canvas"></div>
+            </div>
+            <div class="ui-block-b">
+                <div id="location">
+                    <table id="status">
+                        <tr>
+                            <td colspan="2"></td>
+                        </tr>
+                        <tr>
+                            <td>Latitude:</td>
+                            <td class="numDistance"><div id="myPosLat"></div></td>
+                        </tr>
+                        <tr>
+                            <td>Longitude:</td>
+                            <td class="numDistance"><div id="myPosLng"></div></td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="distance">
+                    <table id="cityDistance">
+                        <tr>
+                            <td>Distance From:</td>
+                            <td><div id="divDistanceFrom"></div></td>
+                        </tr>
+                    </table>
+                </div>
 
-
-        <div id="location">
-            <table id="status">
-                <tr>
-                    <td colspan="2"></td>
-                </tr>
-                <tr>
-                    <td>Latitude:</td>
-                    <td class="numDistance"><div id="myPosLat"></div></td>
-                </tr>
-                <tr>
-                    <td>Longitude:</td>
-                    <td class="numDistance"><div id="myPosLng"></div></td>
-                </tr>
-            </table>
+                <p>
+                    GPS status: <span id="geoStatus"></span><br/>
+                    Lat: <span id="lat"></span><br/>
+                    Lng: <span id="lng"></span><br/>
+                </p>
+                <div data-role="popup" id="transitionExample" class="ui-content" data-theme="d">
+                    <p>I'm a simple popup.</p>
+                </div>
+            </div>
+            </div>
+            <button class="ui-btn" id="btnAreWeThereYet">Are We There Yet?</button>
         </div>
-        <div id="distance">
-            <table id="cityDistance">
-                <tr>
-                    <td>Distance From:</td>
-                    <td><div id="divDistanceFrom"></div></td>
-                </tr>
-
-
-            </table>
-        </div>
-
-        <p>
-            GPS status: <span id="geoStatus"></span><br/>
-            Lat: <span id="lat"></span><br/>
-            Lng: <span id="lng"></span><br/>
-        </p>
-
-        <div data-role="popup" id="transitionExample" class="ui-content" data-theme="d">
-            <p>I'm a simple popup.</p>
-        </div>
-
+        
     </div><!-- /content -->
+
+    <!-- /footer -->
+    <br><br>
+    <div data-role="footer">
+        <h5>2014 Scaventure - MIST 7571 | Team Awesome</h5>
+    </div>
 </div><!-- /page -->
 
 <div data-role="dialog" id="dialogFoundIt">
@@ -84,6 +102,7 @@
         <a href="#" data-role="button" data-rel="back" data-theme="b">Continue</a>
     </div>
 </div><!-- /dialog -->
+ 
 
 <script type="text/javascript">
 
