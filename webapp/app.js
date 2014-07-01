@@ -1,3 +1,44 @@
+//put json data into local storage
+function getScaventureData() {
+    return JSON.parse(getLocalStorage("scaventureData"));
+}
+//retrieve json data from local storage
+function setScaventureData(data) {
+    setLocalStorage("scaventureData", JSON.stringify(data));
+}
+
+// get selected city or set selected city if null
+function getSelectedCity() {
+    //retrieve json data from local storage
+    var scaventureData = getScaventureData();
+
+    // get cities
+    var cities = scaventureData.scaventure.cities;
+
+    // get selected city or set selected city if null
+    var selectedCity = getLocalStorage("selectedCity");
+    if (!selectedCity) {
+        selectedCity = cities[0].name; // select the first city
+        setSelectedCity(selectedCity);
+    }
+    return selectedCity;
+}
+//set local storage with selected city
+function setSelectedCity(selectedCity) {
+    setLocalStorage("selectedCity", selectedCity);
+}
+
+// get selected city from local storage
+function getSelectedHunt() {
+    return getLocalStorage("selectedHunt");
+
+}
+//set local storage with selected city
+function setSelectedHunt(hunt) {
+    setLocalStorage("selectedHunt", hunt);
+}
+
+
 // set the localStorage with the changed field
 function setLocalStorage(storageKey, storageValue) {
     // check if local storage is available
@@ -6,8 +47,8 @@ function setLocalStorage(storageKey, storageValue) {
         try {
             localStorage.setItem(storageKey, storageValue);
             var savedVal = localStorage.getItem(storageKey);
-            console.log("Saved [" + storageKey + "] into localStorage with the Value:");
-            console.log(savedVal);
+            //console.log("Saved [" + storageKey + "] into localStorage with the Value:");
+            //console.log(savedVal);
         }
         catch (err) {
             //unable to set item in local storage
@@ -30,28 +71,3 @@ function getLocalStorage(name){
     }
     return returnVal;
 }
-
-// check if storage exists and output storage to console
-function checkStorage() {
-    // check if local storage available
-    if (window.localStorage) {
-        // intialize variables
-        var key, value, field;
-        // loop through local storage
-        for (var i = 0; i < localStorage.length; i++) {
-            // retrieve the key
-            key = localStorage.key(i);
-            console.log("localStorage.key(" + i + ") = '" + key + "'");
-            // set the field from the key
-            field = document.getElementById(key);
-            console.log("localStorage.key(" + i + ") = '" + key + "'");
-            // check for field and assign value
-            if (field) {
-                // retrieve the value
-                value = localStorage.getItem(key);
-                // set the field value
-                field.value = value;
-            }
-        } // end for loop
-    } // end local storage check
-} // end function

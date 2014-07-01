@@ -1,2 +1,11 @@
 #mustache-img { display: block; width:100%; text-align: center; }
 #mustache-img img { margin:0 auto;  }
+
+ul#profile-stats li {
+    background-position: left center;
+    background-repeat: no-repeat;
+    padding-left:20px;
+}
+#profile-stats-cluesComp { background-image:url("images/icons-png/star-white.png"); }
+#profile-stats-hunts { background-image: url("images/icons-png/location-white.png"); }
+#profile-stats-cities { background-image: url("images/icons-png/navigation-white.png"); }

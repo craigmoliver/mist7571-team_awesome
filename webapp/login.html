@@ -19,34 +19,29 @@
 <div data-role="page"><!-- page -->
     <!-- header -->
     <div data-role="header">
-        <a href="index.html" data-icon="home">Home</a>
         <h1>Scaventure</h1>
     </div>
     <br/>
     <!-- logo-->
     <div data-role="main" class="ui-content">
-        <img src="assets/images/mustache.png" width="70" height="70" style="float: right; display: block;" />
-    </div>
-    <!-- content -->
-    <!-- content -->
-    <div data-role="content" data-inset="true">
+        <div id="mustache-img">
+            <img src="assets/images/mustache.png" width="70" height="70"  />
+        </div>
         <h3>User Login</h3>
         <div id="status"></div>
         <form>
             <label for="email">Email</label>
-            <input name="email" id="email" value="" type="email">
+            <input name="email" id="email" value="elley@cho.com" type="email">
             <label for="password">Password</label>
-            <input name="password" id="password" value="" autocomplete="off" type="password" />
-            <input value="Login" data-theme="a" type="button" data-ajax="false">
+            <input name="password" id="password" value="asdfasdfasdf" autocomplete="off" type="password" />
+            <a href="profile.html" data-role="button" data-theme="a" data-ajax="false">Login</a>
         </form>
-        <br><br>
-            <a href="selectGame.html" data-role="button" data-theme="e" data-ajax="false">Continue as Guest</a>
     </div>
     <!-- /content -->
 
     <!-- footer -->
     <div data-role="footer">
-        <h4>2014 Scaventure - MIST 7571 | Team Awesome</h4>
+        <h5>2014 Scaventure - MIST 7571 | Team Awesome</h5>
     </div>
 
 </div><!-- /page -->

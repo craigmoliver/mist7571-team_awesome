@@ -1,27 +1,25 @@
 {
     "profile":{
-        "email":"example@test.com",
-        "name":"Guest",
+        "email":"elley@cho.com",
+        "name":"Elley",
         "cities":[
             {
                 "name":"Atlanta",
-                "hunts": [
+                "hunt": [
                     {
-                        "clueStatus":"-1",
-                        "order": 0,
-                        "name":"Something",
-                        "desc":"soemthing",
-                        "cluesComp": [
+                        "name": "Historic Atlanta",
+                        "clues": [
                             {
-                                "order": 0,
-                                "name":"something",
-                                "desc":"something",
-                                "location": {
-                                    "latitude":"",
-                                    "longitude":""
-                                },
-                                "fact":"",
-                                "imageUrl":""
+                                "name": "Swan House",
+                                "clueStatus": "1"
+                            },
+                            {
+                                "name": "The Varsity",
+                                "clueStatus": "1"
+                            },
+                            {
+                                "name": "Ferris Wheel",
+                                "clueStatus": "0"
                             }
                         ]
                     }

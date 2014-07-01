@@ -11,24 +11,12 @@
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Abel">
     <script src="assets/jquery-1.11.1.min.js"></script>
     <script src="assets/jquery.mobile-1.4.2.min.js"></script>
-
-    <style type="text/css">
-        ul#profile-stats li {
-            background-position: left center;
-            background-repeat: no-repeat;
-            padding-left:20px;
-        }
-        #profile-stats-cluesComp { background-image:url("assets/images/icons-png/star-white.png"); }
-        #profile-stats-hunts { background-image: url("assets/images/icons-png/location-white.png"); }
-        #profile-stats-cities { background-image: url("assets/images/icons-png/navigation-white.png"); }
-    </style>
 </head>
 <body>
 
 <div data-role="page">
     <!-- /header -->
     <div data-role="header">
-        <a href="selectGame.html" data-icon="home" data-ajax="false">Home</a>
         <h1>Scaventure</h1>
     </div>
     <div data-role="main" class="ui-content">
@@ -39,7 +27,7 @@
         <h2>Stats</h2>
         <ul data-role="listview" data-inset="true" id="profile-stats">
             <li id="profile-stats-cluesComp"><span></span> Clues Solved</li>
-            <li id="profile-stats-hunts"><span></span> Hunts Completed</li>
+            <li id="profile-stats-hunts"><span></span> Hunts</li>
             <li id="profile-stats-cities"><span></span> Cities Scavenged</li>
         </ul>
 
@@ -60,10 +48,12 @@
             <label for="password-confirm">Confirm Password: </label>
             <input type="password" data-clear-btn="true" name="password-confirm" id="password-confirm" value="" autocomplete="off" type="text" />
         </form>
+
+        <a href="selectGame.html" data-role="button" data-theme="a" data-ajax="false">Select A Hunt</a>
     </div><!-- /content -->
 
     <div data-role="footer">
-        <h4>2014 Scaventure - MIST 7571 | Team Awesome</h4>
+        <h5>2014 Scaventure - MIST 7571 | Team Awesome</h5>
     </div><!-- /footer -->
 
 </div><!-- /page -->
@@ -73,9 +63,7 @@
 
     //loads profile data from local storage into form
     function loadProfileForm() {
-
-        // load user cities array
-        var cities = JSON.parse(getLocalStorage("cities"));
+        var cities = JSON.parse(getLocalStorage("userCities")); // load user cities array
 
         //Update page with local storage values
         // set counts
@@ -83,11 +71,22 @@
         var clueCount = 0;
         //loop through cities to count hunts
         $(cities).each(function (index, city) {
-            huntCount += city.hunts.length;
+            huntCount += city.hunt.length;
             console.log(city);
-            $(city.hunts).each(function (index, hunt) {
-                console.log(hunt);
-                clueCount += hunt.cluesComp.length;
+            $(city.hunt).each(function (index, hunt) {
+                //console.log(hunt);
+                console.log("Clues:")
+                console.log(hunt.clues);
+                $(hunt.clues).each(function (index, clue){
+                    //get clue status
+
+                    var clueStatus = parseInt(clue.clueStatus);
+                    console.log(clueStatus);
+                    if (clueStatus === 1) {
+                        clueCount++;
+                    }
+                });
+
             });
         });
         $("#profile-stats-cities > span").html(cities.length);
@@ -128,7 +127,7 @@
                 // add profile values to local storage
                 setLocalStorage("name", result.profile.name);
                 setLocalStorage("email", result.profile.email);
-                setLocalStorage("cities", JSON.stringify(result.profile.cities));
+                setLocalStorage("userCities", JSON.stringify(result.profile.cities));
 
                 // set loaded
                 setLocalStorage("profileLoaded", 1);

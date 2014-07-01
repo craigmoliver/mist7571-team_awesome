@@ -2,27 +2,6 @@
     "scaventure": {
         "cities": [
             {
-                "name": "UGA MIT",
-                "hunt": [
-                    {
-                    "name": "Demo Hunt 1",
-                    "desc": "Demo Hunt for Team Awesome",
-                    "clues": [
-                        {   
-                        "name": "UGA Gwinnett Campus",
-                        "desc": "The last official class building for UGA MIT students, before the program goes online",
-                        "location": {
-                            "latitude": "33.9980889",
-                            "longitude": "-84.0724477"
-                        },
-                        "fact": "The 2014 MIT Cohort is awesome!",
-                        "imageUrl": "/assets/images/demo_gwinnettcampus.png"
-                        }
-                    ]
-                }
-                ]
-            },
-            {
                 "name": "Atlanta",
                 "hunt": [
                     {
@@ -37,7 +16,7 @@
                                     "longitude": "-84.38757959999998"
                                 },
                                 "fact": "In 2004, the Atlanta History Center completed a $5.4 million restoration of the house and its furnishings",
-                                "imageUrl": "/assets/images/atl_swanhouse.png"
+                                "imageUrl": "assets/images/atl_swanhouse.png"
                             },
                             {
                                 "name": "The Varsity",
@@ -47,7 +26,7 @@
                                     "longitude": "-84.387982"
                                 },
                                 "fact": "Downtown Atlanta location is on more than two acres and can accommodate 600 cars and over 800 people inside",
-                                "imageUrl": "/assets/images/atl_varsity.png"
+                                "imageUrl": "assets/images/atl_varsity.png"
                             },
                             {
                                 "name": "Ferris Wheel",
@@ -57,7 +36,7 @@
                                     "longitude": "-84.39181099999996"
                                 },
                                 "fact": "Those looking for an even more enhanced experience can enjoy VIP gondola boasting Ferrari leather seats, glass floor and a longer flight time",
-                                "imageUrl": "/assets/images/atl_ferriswheel.png"
+                                "imageUrl": "assets/images/atl_ferriswheel.png"
                             }
                         ]
                     },
@@ -73,7 +52,7 @@
                                     "longitude": "-84.38757959999998"
                                 },
                                 "fact": "In 2004, the Atlanta History Center completed a $5.4 million restoration of the house and its furnishings",
-                                "imageUrl": "/assets/images/atl_swanhouse.png"
+                                "imageUrl": "assets/images/atl_swanhouse.png"
                             },
                             {
                                 "name": "The Varsity",
@@ -83,7 +62,7 @@
                                     "longitude": "-84.387982"
                                 },
                                 "fact": "Downtown Atlanta location is on more than two acres and can accommodate 600 cars and over 800 people inside",
-                                "imageUrl": "/assets/images/atl_varsity.png"
+                                "imageUrl": "assets/images/atl_varsity.png"
                             },
                             {
                                 "name": "Ferris Wheel",
@@ -93,7 +72,7 @@
                                     "longitude": "-84.39181099999996"
                                 },
                                 "fact": "Those looking for an even more enhanced experience can enjoy VIP gondola boasting Ferrari leather seats, glass floor and a longer flight time",
-                                "imageUrl": "/assets/images/atl_ferriswheel.png"
+                                "imageUrl": "assets/images/atl_ferriswheel.png"
                             }
                         ]
                     },
@@ -109,7 +88,7 @@
                                     "longitude": "-84.38757959999998"
                                 },
                                 "fact": "In 2004, the Atlanta History Center completed a $5.4 million restoration of the house and its furnishings",
-                                "imageUrl": "/assets/images/atl_swanhouse.png"
+                                "imageUrl": "assets/images/atl_swanhouse.png"
                             },
                             {
                                 "name": "The Varsity",
@@ -119,7 +98,7 @@
                                     "longitude": "-84.387982"
                                 },
                                 "fact": "Downtown Atlanta location is on more than two acres and can accommodate 600 cars and over 800 people inside",
-                                "imageUrl": "/assets/images/atl_varsity.png"
+                                "imageUrl": "assets/images/atl_varsity.png"
                             },
                             {
                                 "name": "Ferris Wheel",
@@ -129,7 +108,7 @@
                                     "longitude": "-84.39181099999996"
                                 },
                                 "fact": "Those looking for an even more enhanced experience can enjoy VIP gondola boasting Ferrari leather seats, glass floor and a longer flight time",
-                                "imageUrl": "/assets/images/atl_ferriswheel.png"
+                                "imageUrl": "assets/images/atl_ferriswheel.png"
                             }
                         ]
                     }
@@ -150,7 +129,7 @@
                                     "longitude": "-84.12603189999999"
                                 },
                                 "fact": "What used to be Belk department store, is turning into a Fantasy World",
-                                "imageUrl": "/assets/images/norcross_gwinnettmall.png"
+                                "imageUrl": "assets/images/norcross_gwinnettmall.png"
                             },
                             {
                                 "name": "Historic Downtown Norcross",
@@ -160,7 +139,7 @@
                                     "longitude": "-84.21880440000001"
                                 },
                                 "fact": "Gwinnett County’s second oldest city, Norcross saw new roads and highways which were later built by-pass the city, preserving its historic center as a 19th-century railroad town",
-                                "imageUrl": "/assets/images/norcross_downtown.png"
+                                "imageUrl": "assets/images/norcross_downtown.png"
                             },
                             {
                                 "name": "MicroCenter",
@@ -170,7 +149,7 @@
                                     "longitude": "-84.14141889999996"
                                 },
                                 "fact": "MicroCenter is the retail company in the Micro Electronics family that also includes WinBook Corporation, Redemtech, and PowerSpec",
-                                "imageUrl": "/assets/images/norcross_microcenter.png"
+                                "imageUrl": "assets/images/norcross_microcenter.png"
                             }
                         ]
                     },
@@ -186,7 +165,7 @@
                                     "longitude": "-84.12603189999999"
                                 },
                                 "fact": "What used to be Belk department store, is turning into a Fantasy World",
-                                "imageUrl": "/assets/images/norcross_gwinnettmall.png"
+                                "imageUrl": "assets/images/norcross_gwinnettmall.png"
                             },
                             {
                                 "name": "Historic Downtown Norcross",
@@ -196,7 +175,7 @@
                                     "longitude": "-84.21880440000001"
                                 },
                                 "fact": "Gwinnett County’s second oldest city, Norcross saw new roads and highways which were later built by-pass the city, preserving its historic center as a 19th-century railroad town",
-                                "imageUrl": "/assets/images/norcross_downtown.png"
+                                "imageUrl": "assets/images/norcross_downtown.png"
                             },
                             {
                                 "name": "MicroCenter",
@@ -206,7 +185,17 @@
                                     "longitude": "-84.14141889999996"
                                 },
                                 "fact": "MicroCenter is the retail company in the Micro Electronics family that also includes WinBook Corporation, Redemtech, and PowerSpec",
-                                "imageUrl": "/assets/images/norcross_microcenter.png"
+                                "imageUrl": "assets/images/norcross_microcenter.png"
+                            },
+                            {
+                                "name": "UGA Gwinnett Campus",
+                                "desc": "The last official class building for UGA MIT students, before the program goes online",
+                                "location": {
+                                    "latitude": "33.9980889",
+                                    "longitude": "-84.0724477"
+                                },
+                                "fact": "The 2014 MIT Cohort is awesome!",
+                                "imageUrl": "assets/images/demo_gwinnettcampus.png"
                             }
                         ]
                     },
@@ -222,7 +211,7 @@
                                     "longitude": "-84.12603189999999"
                                 },
                                 "fact": "What used to be Belk department store, is turning into a Fantasy World",
-                                "imageUrl": "/assets/images/norcross_gwinnettmall.png"
+                                "imageUrl": "assets/images/norcross_gwinnettmall.png"
                             },
                             {
                                 "name": "Historic Downtown Norcross",
@@ -232,7 +221,7 @@
                                     "longitude": "-84.21880440000001"
                                 },
                                 "fact": "Gwinnett County’s second oldest city, Norcross saw new roads and highways which were later built by-pass the city, preserving its historic center as a 19th-century railroad town",
-                                "imageUrl": "/assets/images/norcross_downtown.png"
+                                "imageUrl": "assets/images/norcross_downtown.png"
                             },
                             {
                                 "name": "MicroCenter",
@@ -242,7 +231,7 @@
                                     "longitude": "-84.14141889999996"
                                 },
                                 "fact": "MicroCenter is the retail company in the Micro Electronics family that also includes WinBook Corporation, Redemtech, and PowerSpec",
-                                "imageUrl": "/assets/images/norcross_microcenter.png"
+                                "imageUrl": "assets/images/norcross_microcenter.png"
                             }
                         ]
                     }
@@ -263,7 +252,7 @@
                                     "longitude": "-84.36087040000001"
                                 },
                                 "fact": "The waterfall created when the creek was dammed to provide waterpower as well as the original machine shop can be viewed from the interpreted trail",
-                                "imageUrl": "/assets/images/roswell_mill.png"
+                                "imageUrl": "assets/images/roswell_mill.png"
                             },
                             {
                                 "name": "Smith Plantation Home",
@@ -273,7 +262,7 @@
                                     "longitude": "-84.35979529999997"
                                 },
                                 "fact": "Three generations of the Archibald Smith family lived in this home and saved all of their belongings, large and small, important and trivial, broken or whole.",
-                                "imageUrl": "/assets/images/roswell_smithplantation.png"
+                                "imageUrl": "assets/images/roswell_smithplantation.png"
                             },
                             {
                                 "name": "Mansell House & Gardens",
@@ -283,7 +272,7 @@
                                     "longitude": "-84.27192989999998"
                                 },
                                 "fact": "The Mansell House and Gardens is a beautiful venue for wedding ceremonies, receptions, rehearsal dinners, bar/bat mitzvahs, showers, birthday parties, holiday parties, meetings and more",
-                                "imageUrl": "/assets/images/roswell_mansell.png"
+                                "imageUrl": "assets/images/roswell_mansell.png"
                             }
                         ]
                     },
@@ -299,7 +288,7 @@
                                     "longitude": "-84.36087040000001"
                                 },
                                 "fact": "The waterfall created when the creek was dammed to provide waterpower as well as the original machine shop can be viewed from the interpreted trail",
-                                "imageUrl": "/assets/images/roswell_mill.png"
+                                "imageUrl": "assets/images/roswell_mill.png"
                             },
                             {
                                 "name": "Smith Plantation Home",
@@ -309,7 +298,7 @@
                                     "longitude": "-84.35979529999997"
                                 },
                                 "fact": "Three generations of the Archibald Smith family lived in this home and saved all of their belongings, large and small, important and trivial, broken or whole.",
-                                "imageUrl": "/assets/images/roswell_smithplantation.png"
+                                "imageUrl": "assets/images/roswell_smithplantation.png"
                             },
                             {
                                 "name": "Mansell House & Gardens",
@@ -319,7 +308,7 @@
                                     "longitude": "-84.27192989999998"
                                 },
                                 "fact": "The Mansell House and Gardens is a beautiful venue for wedding ceremonies, receptions, rehearsal dinners, bar/bat mitzvahs, showers, birthday parties, holiday parties, meetings and more",
-                                "imageUrl": "/assets/images/roswell_mansell.png"
+                                "imageUrl": "assets/images/roswell_mansell.png"
                             }
                         ]
                     },
@@ -335,7 +324,7 @@
                                     "longitude": "-84.36087040000001"
                                 },
                                 "fact": "The waterfall created when the creek was dammed to provide waterpower as well as the original machine shop can be viewed from the interpreted trail",
-                                "imageUrl": "/assets/images/roswell_mill.png"
+                                "imageUrl": "assets/images/roswell_mill.png"
                             },
                             {
                                 "name": "Smith Plantation Home",
@@ -345,7 +334,7 @@
                                     "longitude": "-84.35979529999997"
                                 },
                                 "fact": "Three generations of the Archibald Smith family lived in this home and saved all of their belongings, large and small, important and trivial, broken or whole.",
-                                "imageUrl": "/assets/images/roswell_smithplantation.png"
+                                "imageUrl": "assets/images/roswell_smithplantation.png"
                             },
                             {
                                 "name": "Mansell House & Gardens",
@@ -355,7 +344,7 @@
                                     "longitude": "-84.27192989999998"
                                 },
                                 "fact": "The Mansell House and Gardens is a beautiful venue for wedding ceremonies, receptions, rehearsal dinners, bar/bat mitzvahs, showers, birthday parties, holiday parties, meetings and more",
-                                "imageUrl": "/assets/images/roswell_mansell.png"
+                                "imageUrl": "assets/images/roswell_mansell.png"
                             }
                         ]
                     }

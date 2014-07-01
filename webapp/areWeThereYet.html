@@ -32,19 +32,20 @@
 
 <div data-role="page">
     <div data-role="header">
-        <a href="index.html" data-icon="home">Home</a>
         <h1>Scaventure</h1>
     </div>
 
     <div data-role="main" class="ui-content">
         <h2>You are here:</h2>
         <div id="map_canvas"></div><!-- map container -->
+        <h2>Clue</h2>
+        <div><strong>City: </strong><span id="displayCity"></span></div>
+        <div><strong>Hunt: </strong><span id="displayHunt"></span></div>
+        <div><strong>Clue: </strong><span id="displayClue"></span></div>
+
         <button class="ui-btn" id="btnIsFound">Check location</button>
-        <!--<p>
-            GPS status: <span id="geoStatus"></span><br/>
-            Lat: <span id="lat"></span><br/>
-            Lng: <span id="lng"></span><br/>
-        </p>-->
+
+        <a href="selectGame.html" data-role="button" data-theme="a" data-ajax="false">Select A Hunt</a>
     </div><!-- /content -->
 </div><!-- /page -->
 
@@ -54,7 +55,9 @@
     </div>
     <div data-role="content">
         <h1>You've found it!</h1>
-        <a href="#" data-role="button" data-rel="back" data-theme="b">Continue</a>
+        <p><img id="clue-image" src="" style="width:100%" /></p>
+        <p><span id="fact"></span></p>
+        <a href="#" data-role="button" data-rel="back" data-theme="b" id="btnFoundContinue">YES!! Continue</a>
     </div>
 </div><!-- /dialog -->
 
@@ -64,14 +67,22 @@
     </div>
     <div data-role="content">
         <h1>You're not there yet.</h1>
-        <a href="#" data-role="button" data-rel="back" data-theme="b">Continue</a>
+        <a href="#" data-role="button" data-rel="back" data-theme="b">Pooey.</a>
     </div>
 </div><!-- /dialog -->
 
+<script type="text/javascript" src="app.js"></script>
 <script type="text/javascript">
 
     var myLat; // stores user's latitude
     var myLng; // stores user's longitude
+
+    var selectedCity = getSelectedCity(); //get city selected
+    var selectedHunt = getSelectedHunt(); // get selected hunt
+    var scaventureData = getScaventureData(); // get Scaventure Data
+    var userCities = JSON.parse(getLocalStorage("userCities")); // get user cities
+    var nextUserClue;
+    var nextClue;
 
     // sets everything up on page load
     $(window).load(function (){
@@ -83,7 +94,92 @@
                 getDistanceToClue();
             }
         });
+        $("#btnFoundContinue").click(function(){
+            setClueCompleted();
+            setClue();
+        });
+
     });
+
+    // set the next user clue
+    function setNextUserClue() {
+        // search cities for selected city and add the city and hunt if its not there
+        $.each(userCities, function(index, userCity) { // loop through cities
+            if (userCity.name === selectedCity) { // find user city that matches selected city
+                $.each(userCity.hunt, function(index, userHunt) { // loop through hunts;
+                    if (userHunt.name === selectedHunt) { // find hunt that matches selected hunt
+                        $.each(userHunt.clues, function(index, userClue) { // loop through hunts
+                            if (parseInt(userClue.clueStatus) === 0){
+                                nextUserClue = userClue;
+                            }
+                        });
+                    }
+                });
+
+            }
+        });
+    }
+
+    // set current clue
+    function setClue() {
+        setNextUserClue();
+        //console.log(nextUserClue);
+        var displayCity = "";
+        var displayHunt = "";
+        var displayClue = "";
+
+        // search cities for selected city and add the city and hunt if its not there
+        $.each(scaventureData.scaventure.cities, function(index, city) { // loop through each city
+            //console.log(userCity.name + " - " + selectedCity);
+            if (city.name === selectedCity) { // find user city that matches selected city
+                displayCity = city.name;
+                $.each(city.hunt, function(index, hunt) { // loop through hunts
+                    if (hunt.name === selectedHunt) { // find hunt that matches selected hunt
+                        displayHunt = hunt.name;
+                        $.each(hunt.clues, function(index, clue) { // loop through clues
+
+                            if (clue.name === nextUserClue.name) {
+                                //console.log(clue.name);
+                                //console.log(clue);
+                                nextClue = clue;
+                            }
+                        });
+                    }
+                });
+
+            }
+        });
+
+        //console.log(nextClue);
+
+        $("#displayHunt").html(displayHunt);
+        $("#displayCity").html(displayCity);
+        $("#displayClue").html(nextClue.desc);
+        $("#clue-image").attr("src", nextClue.imageUrl);
+        $("#fact").html(nextClue.fact);
+    }
+
+    // sets completed clue
+    function setClueCompleted(){
+        // search cities for selected city and add the city and hunt if its not there
+        $.each(userCities, function(index, userCity) { // loop through cities
+            if (userCity.name === selectedCity) { // find user city that matches selected city
+                $.each(userCity.hunt, function(index, userHunt) { // loop through hunts;
+                    if (userHunt.name === selectedHunt) { // find hunt that matches selected hunt
+                        $.each(userHunt.clues, function(index, userClue) { // loop through hunts
+                            console.log(userClue.name + " " + nextClue.name);
+                            if (userClue.name === nextClue.name) { // set this clue's status as complete
+                                userClue.clueStatus = "1";
+                            }
+                        });
+                    }
+                });
+            }
+        });
+
+        console.log(userCities);
+        setLocalStorage("userCities", JSON.stringify(userCities));
+    }
 
     // creates LatLng object for browser's reported position
     function getClientPosition(position) {
@@ -92,39 +188,17 @@
 
     // calculate distance to clue
     function getDistanceToClue() {
-        console.log("getDistanceToClue");
-        var selectedCity = "Atlanta";
-        var selectedHuntIndex = 0;
-        var nextClueIndex = 1;
-        $.getJSON("assets/scaventureJSON.json", function(result) {
-            var lat = 0;
-            var lng = 0;
+        //console.log("getDistanceToClue");
+        var selectedCity = getSelectedCity();
+        var scaventureData = getScaventureData(); // get Scaventure Data
 
-            $.each(result.scaventure.cities, function() { // loop through each city
-                if (this.name === selectedCity) { // if selected city equals current city
-                    //console.log("Found! City Name - " + this.name);
-                    $.each(this.hunt, function(index) { // loop through city's hunts
-                        //console.log("City Index " + index);
-                        if (index === selectedHuntIndex) { // if selected hunt equals selected Hunt
-                            //console.log("Found! Hunt Name - " + this.name);
-                            $.each(this.clues, function(index) { // loop through hunt's clues
-                                //console.log("Clue Index " + index);
-                                if (index === nextClueIndex) { // if selected clue equals selected clue
-                                    //console.log("Clue Name - " + this.name);
-                                    lat = parseFloat(this.location.latitude); //get current latitude
-                                    lng = parseFloat(this.location.longitude); // get current longitude
-                                    //console.log("Clue location - " + lat + ", " + lng);
-                                    var clueLatLng = new google.maps.LatLng(lat, lng);
-                                    var distanceFrom = calculateDistanceNextClue(clueLatLng);
-                                    //console.log("Clue Distance From - " + distanceFrom);
-                                    areWeThereYet(distanceFrom);
-                                }
-                            });
-                        }
-                    });
-                }
-            });
-        });
+        var lat = parseFloat(nextClue.location.latitude);
+        var lng = parseFloat(nextClue.location.longitude);
+
+        var clueLatLng = new google.maps.LatLng(lat, lng);
+        var distanceFrom = calculateDistanceNextClue(clueLatLng);
+        console.log("Clue Distance From - " + distanceFrom);
+        areWeThereYet(distanceFrom);
     }
 
     // calculates distance to next clue
@@ -135,7 +209,7 @@
 
         var myLatLng = new google.maps.LatLng(myLat, myLng);
         var distTo = gmapsSpherLib.computeDistanceBetween(myLatLng,clueLatLng,conEarth).toFixed(2);
-        console.log("Distance To - " + distTo);
+        //console.log("Distance To - " + distTo);
         $("#divDistanceFrom").html(distTo + " mi.");
         return distTo;
     }
@@ -189,6 +263,8 @@
                 ]
             }
         });
+
+        setClue();
     }
 
     // error handler for getCurrentPosition
@@ -223,9 +299,9 @@
             // make asynchronous getCurrentPosition call
             navigator.geolocation.getCurrentPosition(geoSuccess, geoErrorHandler, posOptions);
 
-            $("#geoStatus").html("Retrieving your location.");
+            //$("#geoStatus").html("Retrieving your location.");
         } else {
-            $("#geoStatus").html("Geolocation API Not Supported");
+            //$("#geoStatus").html("Geolocation API Not Supported");
         }
 
     }
