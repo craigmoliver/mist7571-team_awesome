@@ -10,6 +10,11 @@
     <script src="assets/jquery-1.11.1.js"></script>
     <script src="assets/jquery.mobile-1.4.2.js"></script>
 
+    <!--Google Fonts-->
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Seaweed+Script">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Abel">
+
+
     <!---->
     <script src="http://maps.google.com/maps/api/js?sensor=false&libraries=geometry"></script>
     <script type="text/javascript" src="assets/gmap3.js"></script>
@@ -27,51 +32,19 @@
 
 <div data-role="page">
     <div data-role="header">
+        <a href="index.html" data-icon="home">Home</a>
         <h1>Scaventure</h1>
-    </div><!-- /header -->
+    </div>
 
     <div data-role="main" class="ui-content">
-        <div id="map_canvas"></div>
-
-        <button class="ui-btn" id="btnAreWeThereYet">Are We There Yet?</button>
-
-
-        <div id="location">
-            <table id="status">
-                <tr>
-                    <td colspan="2"></td>
-                </tr>
-                <tr>
-                    <td>Latitude:</td>
-                    <td class="numDistance"><div id="myPosLat"></div></td>
-                </tr>
-                <tr>
-                    <td>Longitude:</td>
-                    <td class="numDistance"><div id="myPosLng"></div></td>
-                </tr>
-            </table>
-        </div>
-        <div id="distance">
-            <table id="cityDistance">
-                <tr>
-                    <td>Distance From:</td>
-                    <td><div id="divDistanceFrom"></div></td>
-                </tr>
-
-
-            </table>
-        </div>
-
-        <p>
+        <h2>You are here:</h2>
+        <div id="map_canvas"></div><!-- map container -->
+        <button class="ui-btn" id="btnIsFound">Check if you found</button>
+        <!--<p>
             GPS status: <span id="geoStatus"></span><br/>
             Lat: <span id="lat"></span><br/>
             Lng: <span id="lng"></span><br/>
-        </p>
-
-        <div data-role="popup" id="transitionExample" class="ui-content" data-theme="d">
-            <p>I'm a simple popup.</p>
-        </div>
-
+        </p>-->
     </div><!-- /content -->
 </div><!-- /page -->
 
@@ -102,41 +75,19 @@
 
     // sets everything up on page load
     $(window).load(function (){
-        loadMap();
         setLocation();
 
-        $("#btnAreWeThereYet").click( function() {
+        // click handler for "Are We There Yet?" button.
+        $("#btnIsFound").click( function() {
             if (myLat && myLng) {
                 getDistanceToClue();
             }
         });
     });
 
+    // creates LatLng object for browser's reported position
     function getClientPosition(position) {
         return new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-    }
-
-    function loadMap(){
-
-
-        /*
-        $('#map_canvas').gmap('getCurrentPosition', function(position, status) {
-            console.log("getCurrentPosition");
-            if ( status === 'OK' ) {
-                console.log("getCurrentPosition OK");
-                var clientPosition = getClientPosition(position);
-
-
-                $('#map_canvas').gmap(
-                        'addShape',
-                        'Circle', {
-                            'strokeColor': "#FF0000", 'strokeOpacity': 0.8, 'strokeWeight': 2, 'fillColor': "#FF0000",
-                            'fillOpacity': 0.35, 'center': clientPosition, 'radius': 6
-                        }
-                );
-
-            }
-        });*/
     }
 
     // calculate distance to clue
@@ -205,16 +156,16 @@
         }
     }
 
+    // callback function when location data is provided by the browser
     function geoSuccess(position) {
         console.log("geoSuccess");
         // get our lat and lng coordinates
         myLat = position.coords.latitude;
         myLng = position.coords.longitude;
-        // display the coords and timestamp object fields
-        $("#lat").html(myPosLat);
-        $("#lng").html(myPosLng);
 
-        // reverse geocode the lat and lng
+        // display the coords and timestamp object fields
+        //$("#lat").html(myLat);
+        //$("#lng").html(myLng);
 
         // setup map using gmap3 plugin
         $("#map_canvas").gmap3({
