@@ -1,21 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8" />
-    <title>Scaventure - the Adventure Awaits</title>
+	<title>Scaventure - the Adventure Awaits</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="assets/scaventure.min.css" />
     <link rel="stylesheet" href="assets/jquery.mobile.icons.min.css" />
     <link rel="stylesheet" href="assets/jquery.mobile.structure-1.4.2.min.css" />
-    <script src="assets/jquery-1.11.1.min.js"></script>
-    <script src="assets/jquery.mobile-1.4.2.min.js"></script>
-
-    <!--Google Fonts-->
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Seaweed+Script">
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Abel">
 
+    <script src="assets/jquery-1.11.1.min.js"></script>
+    <script src="assets/jquery.mobile-1.4.2.min.js"></script>
     
     <script type="text/javascript">
+    //refresh page on click
+    function init(){
+    document.getElementById('submit').addEventListener("click",pageLoad);
+    }
+    
+    function pageLoad(){
+    	location.reload(true);
+    }
+    
  	// function to read storage and init form
     function checkStorage() {
         // check if local storage available
@@ -96,16 +102,26 @@
             $("#cluesComp").html(json.profile.cities.cluesComp.length);
 
 	    });
-
+	    
 	});
- 	
-  	//Load user info from local storage
-  	//function loadUser
-  	//if new user or first vist show profile set up
-  	
-  	//tell them to push user info into user local storage array
-  	
-  	//loop to display profile contents
+	//updates local storage with new information entered in form
+	$(document).ready(function () {
+	    function init() {
+	        if (localStorage["username"]) {
+	            $('#username').val(localStorage["username"]);
+	        }
+	        if (localStorage["firstName"]) {
+	            $('#firstName').val(localStorage["firstName"]);
+	        }
+	        if (localStorage["email"]) {
+	            $('#email').val(localStorage["email"]);
+	        }
+	    }
+	    $('.localStore').keyup(function () {
+	        localStorage[$(this).attr('id')] = $(this).val();
+	    });
+	    init();
+	});
   	
     </script>
 </head>
@@ -121,41 +137,40 @@
     <div data-role="main" class="ui-content">
         <img src="assets/images/mustache.png" width="70" height="70" style="float: right; display: block;"></img>
     	<div data-role="content" data-inset="true">
-                <h3>Welcome back,<div id="firstName" class="pirate"></div></h3>
-                <div class="profileList" style="list-style-type: none;display:inline;" >
+                <h3>Welcome back!</h3>
                 
-        		<div id="username"></div>
-        		<div id="email"></div>
         		<br/>
-        		<div data-icon="location"><div id="cities"></div> Cities Scavenged</div>
-                <a href="#" data-icon="home"><div id="huntsComp"></div> Hunts Completed</a>
-                <a href="#" data-icon="home"><div id="cluesComp"></div> Clues Solved</a>
-                </div>
-                
-                <!-- Only seen when the user hasn't set up a profile -->
-                <div>
-                	<form>
+        		<img src="assets/images/icons-png/star-white.png" style="float:left;padding-right="70px";></img>    <span id="cluesComp"></span> Clues Solved <br/>
+        		<img src="assets/images/icons-png/location-white.png" style="float:left;padding-right="10px";></img>    <span id="huntsComp"></span> Hunts Completed<br/>
+        		<img src="assets/images/icons-png/navigation-white.png" style="float:left;padding-right="10px";></img>  <span id="cities"></span> Cities Scavenged<br/>
+
+       </div>
+       <!-- Form for updating local storage of player info -->
+       <div>
+                	<form name="ls_profile_form" method="post" action="">
                 	<label for="username">First Name</label>
-		            <input name="username" id="username" value="">
+		            <input name="username" id="username" value="" placeholder="" type="text" class="localStore">
                 	<label for="firstName">Username</label>
-		            <input name="firstName" id="firstName" value="">
+		            <input name="firstName" id="firstName" value="" placeholder="" type="text" class="localStore">
 		            <label for="email">Email</label>
-		            <input name="email" id="email" value="" type="email">
-		            <label for="password">Password</label>
-		            <input name="password" id="password" value="" autocomplete="off" type="password" />
-		            <input value="Update" data-theme="a" type="button">
+		            <input name="email" id="email" value="" type="email" placeholder="" type="text" class="localStore">
+		            <label for="password-1">Password: </label>
+				    <input type="password" data-clear-btn="false" name="password-1" id="password-1" value="" autocomplete="off" type="text" class="localStore">
+				    <label for="password-2">Password: </label>
+				    <input type="password" data-clear-btn="true" name="password-2" id="password-2" value="" autocomplete="off" type="text" class="localStore">
+		            
+		            <a href="selectGame.html" class=" ui-btn ui-btn-a ui-icon-bars ui-btn-icon-left ui-shadow ui-corner-all"><span class="pirate">Treasure Awaits You!!</span></a>
 		        	</form>
-                </div>
+                </div>         
+                
                 <br><br>
                  
         </div>
     </div><!-- /content -->
 
-     <!-- /footer -->
-    <br><br>
     <div data-role="footer">
-        <h5>2014 Scaventure - MIST 7571 | Team Awesome</h5>
-    </div>
+        <h4>2014 Scaventure - MIST 7571 | Team Awesome</h4>
+    </div><!-- /footer -->
 
 </div><!-- /page -->
 
