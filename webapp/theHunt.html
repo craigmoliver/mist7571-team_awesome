@@ -84,24 +84,24 @@
         var huntID = localStorage.getItem('huntID');
 
         //get player's current clue ID
-        var onClueID = localStorage.getItem('onClueID');
+        var nextClueIndex = localStorage.getItem('nextClueIndex');
 
-        //if local storage does not have 'onClueID', set it to 0
-        if (onClueID == null){
-            onClueID = 0;
+        //if local storage does not have 'nextClueIndex', set it to 0
+        if (nextClueIndex == null){
+            nextClueIndex = 0;
         }
 
         //ensure local storage is not missing city, cityID, hunt, and huntID
         if (city !== null && cityID != null && hunt !== null && huntID != null){
             console.log("Starting Scaventure with City => " + city + " (ID: => " + cityID + ") and Hunt => " + hunt + " (ID: => " + huntID + ")");
-            console.log("Player is on Clue ID => " + onClueID);
+            console.log("Player is on Clue ID => " + nextClueIndex);
 
             //populate Header with City > Hunt
             $("#header").html(city + " > " + hunt);
             //populate hunt description DIV
             $("#huntDesc").text("Description: " + json.scaventure.cities[cityID].hunt[huntID].desc);
 
-            //populate clues output based on city and hunt and player's 'onClueID'
+            //populate clues output based on city and hunt and player's 'nextClueIndex'
             var output = "";
 
             $.each(json.scaventure.cities[cityID].hunt[huntID].clues, function(key, value) {
@@ -110,39 +110,53 @@
                 var clue = value.desc;    
 
                 //print solved clue name with a star
-                if ((clueIndex-1) < onClueID){
-                    output += "<a href='#' class='ui-btn ui-icon-star ui-btn-icon-left'>Clue " + clueIndex + "</a>";      
+                if ((clueIndex-1) < nextClueIndex){
+                    output += "<a href='#' class='ui-btn ui-icon-star ui-btn-icon-left ui-btn-active'>Clue " + clueIndex + "</a>";      
                 }
                 //print current clue with clue name
-                if ((clueIndex-1) == onClueID){
-                    output += "<div data-role='collapsible'>";
-                    output += "<h1>Clue " + clueIndex + "</h1><p>" + clue + "</p></div>";      
+                if ((clueIndex-1) == nextClueIndex){
+                    output += "<a href='#' class='ui-btn ui-icon-lock ui-btn-icon-left'>Clue " + clueIndex + "</a>";
+                    $("#clueHint").html(clue);      
                 }
-                
             }); 
 
             //populate clues
             $("#clues").html(output);
         }
-        
     });
     </script>
 </head>
 <body>
     <div data-role="page">
     <!-- header -->
-    <div data-role="header"> 
-        <h1 id="header"></h1> 
+    <div data-role="header">
+        <a href="profile.html" data-icon="home">Home</a>
+        <h1>Scaventure</h1>
+    </div>
+    <br/>
+    <!-- logo-->
+    <div data-role="main" class="ui-content">
+        <img src="assets/images/mustache.png" width="70" height="70" style="float: right; display: block;" />
+        <h2 id="header"></h2>
     </div>
 
     <!-- content -->
     <div data-role="content" data-inset="true">
          <div data-role="main" class="ui-content">
-            <div id="huntDesc"></div>
-            <div id="clues"></div>
+            <div id="huntDesc" class="gray"></div>
+            <div class="ui-grid-a">
+                <div id="clues"></div>
+                <div id="clueHint"></div>
+            </div>
         </div>
-        <a href="theHunt.html" data-role="button">Am I Here?</a>
+        <a href="areWeThereYet.html" data-role="button">Am I Here?</a>
     </div><!-- /content -->
+
+    <!-- /footer -->
+    <br><br>
+    <div data-role="footer">
+        <h5>2014 Scaventure - MIST 7571 | Team Awesome</h5>
+    </div>
 
     </div><!-- /page -->
 </body>
