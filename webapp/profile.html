@@ -3,169 +3,63 @@
 <head>
 	<title>Scaventure - the Adventure Awaits</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="assets/scaventure.min.css" />
-    <link rel="stylesheet" href="assets/jquery.mobile.icons.min.css" />
-    <link rel="stylesheet" href="assets/jquery.mobile.structure-1.4.2.min.css" />
+    <link rel="stylesheet" type="text/css" href="assets/scaventure.min.css" />
+    <link rel="stylesheet" type="text/css" href="assets/scaventure-custom.css" />
+    <link rel="stylesheet" type="text/css" href="assets/jquery.mobile.icons.min.css" />
+    <link rel="stylesheet" type="text/css" href="assets/jquery.mobile.structure-1.4.2.min.css" />
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Seaweed+Script">
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Abel">
-
     <script src="assets/jquery-1.11.1.min.js"></script>
     <script src="assets/jquery.mobile-1.4.2.min.js"></script>
-    
-    <script type="text/javascript">
-    //refresh page on click
-    function init(){
-    document.getElementById('submit').addEventListener("click",pageLoad);
-    }
-    
-    function pageLoad(){
-    	location.reload(true);
-    }
-    
- 	// function to read storage and init form
-    function checkStorage() {
-        // check if local storage available
-        if (window.localStorage) {
-            var key, value, field;
-            // loop through local storage
-            for (var i = 0; i < localStorage.length; i++) {
-                // retrieve the key
-                key = localStorage.key(i);
-                
-                // set the field from the key
-                field = document.getElementById(key);
-                
-                // check for field and assign value
-                if (field) {
-                    // retrieve the value
-                    value = unescape(localStorage.getItem(key));
-                    // set the field value
-                    field.value = value; 
-                }
-            } // end for loop
-        } // end local storage check 
-    } // end function
-    
-    // set the localStorage with the changed field
-    function updateStorage(elKey, elValue) {
-        // check if local storage is available
-        if (window.localStorage) {
-            var key, value;
-            
-            // set key to form field id
-            key = elKey;
-            
-            // set value to form field value
-            value = elValue;
-            
-            // try to set item in local storage 
-            try {
-                localStorage.setItem(key, value);
-                var savedVal = localStorage.getItem(key);
-                console.log("Saved [" + key + "] into localStorage with the Value => " + savedVal);
-            }
-            catch (err) {
-                //unable to set item in local storage
-                if (err.code == QUOTA_EXCEEDED_ERR) {
-                    alert('localStorage ran out of memory.'); }
-                }
-            } else {
-                alert('localStorage is not supported.');
-            } 
-        }
-    // initialize our form from local storage
-    window.addEventListener('load',checkStorage,false);
-    </script>
-    
-	<script type="text/javascript">
-	//load the json object into the local storage
-	$(window).load(function(){
-		var json;
-		console.log("This is a test2 ");
-		
-	    $.getJSON("assets/profileJSON.json", function(result) {
-	    	console.log("This is a test 31");
-	    	result = JSON.stringify(result);
-            updateStorage('json', result);
-	    	
-          //retrieve json data from local storage
-            json = JSON.parse(localStorage.getItem('json'));
-          
-			//console.log("This is a name " + json.profile.username);
-			//console.log("This is a email " + json.profile.email);
-			//Update page with local storage values
-            $("#username").html(json.profile.username);
-            $("#email").html(json.profile.email);
-            $("#firstName").html(json.profile.firstName);
-            $("#cities").html(json.profile.cities.length);
-            $("#huntsComp").html(json.profile.cities.huntsComp.length);
-            $("#cluesComp").html(json.profile.cities.cluesComp.length);
 
-	    });
-	    
-	});
-	//updates local storage with new information entered in form
-	$(document).ready(function () {
-	    function init() {
-	        if (localStorage["username"]) {
-	            $('#username').val(localStorage["username"]);
-	        }
-	        if (localStorage["firstName"]) {
-	            $('#firstName').val(localStorage["firstName"]);
-	        }
-	        if (localStorage["email"]) {
-	            $('#email').val(localStorage["email"]);
-	        }
-	    }
-	    $('.localStore').keyup(function () {
-	        localStorage[$(this).attr('id')] = $(this).val();
-	    });
-	    init();
-	});
-  	
-    </script>
+    <style type="text/css">
+        ul#profile-stats li {
+            background-position: left center;
+            background-repeat: no-repeat;
+            padding-left:20px;
+        }
+        #profile-stats-cluesComp { background-image:url("assets/images/icons-png/star-white.png"); }
+        #profile-stats-hunts { background-image: url("assets/images/icons-png/location-white.png"); }
+        #profile-stats-cities { background-image: url("assets/images/icons-png/navigation-white.png"); }
+    </style>
 </head>
 <body>
 
 <div data-role="page">
     <!-- /header -->
     <div data-role="header">
-        <a href="index.html" data-icon="home">Home</a>
+        <a href="selectGame.html" data-icon="home" data-ajax="false">Home</a>
         <h1>Scaventure</h1>
     </div>
-    <br/>
     <div data-role="main" class="ui-content">
-        <img src="assets/images/mustache.png" width="70" height="70" style="float: right; display: block;"></img>
-    	<div data-role="content" data-inset="true">
-                <h3>Welcome back!</h3>
-                
-        		<br/>
-        		<img src="assets/images/icons-png/star-white.png" style="float:left;padding-right="70px";></img>    <span id="cluesComp"></span> Clues Solved <br/>
-        		<img src="assets/images/icons-png/location-white.png" style="float:left;padding-right="10px";></img>    <span id="huntsComp"></span> Hunts Completed<br/>
-        		<img src="assets/images/icons-png/navigation-white.png" style="float:left;padding-right="10px";></img>  <span id="cities"></span> Cities Scavenged<br/>
-
-       </div>
-       <!-- Form for updating local storage of player info -->
-       <div>
-                	<form name="ls_profile_form" method="post" action="">
-                	<label for="username">First Name</label>
-		            <input name="username" id="username" value="" placeholder="" type="text" class="localStore">
-                	<label for="firstName">Username</label>
-		            <input name="firstName" id="firstName" value="" placeholder="" type="text" class="localStore">
-		            <label for="email">Email</label>
-		            <input name="email" id="email" value="" type="email" placeholder="" type="text" class="localStore">
-		            <label for="password-1">Password: </label>
-				    <input type="password" data-clear-btn="false" name="password-1" id="password-1" value="" autocomplete="off" type="text" class="localStore">
-				    <label for="password-2">Password: </label>
-				    <input type="password" data-clear-btn="true" name="password-2" id="password-2" value="" autocomplete="off" type="text" class="localStore">
-		            
-		            <a href="selectGame.html" class=" ui-btn ui-btn-a ui-icon-bars ui-btn-icon-left ui-shadow ui-corner-all"><span class="pirate">Treasure Awaits You!!</span></a>
-		        	</form>
-                </div>         
-                
-                <br><br>
-                 
+        <div id="mustache-img">
+            <img src="assets/images/mustache.png" width="70" height="70"  />
         </div>
+
+        <h2>Stats</h2>
+        <ul data-role="listview" data-inset="true" id="profile-stats">
+            <li id="profile-stats-cluesComp"><span></span> Clues Solved</li>
+            <li id="profile-stats-hunts"><span></span> Hunts Completed</li>
+            <li id="profile-stats-cities"><span></span> Cities Scavenged</li>
+        </ul>
+
+        <h2>Profile</h2>
+        <!-- Form for updating local storage of player info -->
+        <form name="ls_profile_form" method="post" action="">
+
+            <label for="name">Name</label>
+            <input name="name" id="name" placeholder="" type="text" class="localStore" />
+
+            <label for="email">Email</label>
+            <input name="email" id="email" type="email" placeholder="" type="text" class="localStore" />
+
+            <h3>Change Password</h3>
+            <label for="password">Password: </label>
+            <input type="password" data-clear-btn="false" name="password" id="password" value="" autocomplete="off" type="text" />
+
+            <label for="password-confirm">Confirm Password: </label>
+            <input type="password" data-clear-btn="true" name="password-confirm" id="password-confirm" value="" autocomplete="off" type="text" />
+        </form>
     </div><!-- /content -->
 
     <div data-role="footer">
@@ -173,6 +67,96 @@
     </div><!-- /footer -->
 
 </div><!-- /page -->
+
+<script type="text/javascript" src="app.js"></script>
+<script type="text/javascript">
+
+    //loads profile data from local storage into form
+    function loadProfileForm() {
+
+        // load user cities array
+        var cities = JSON.parse(getLocalStorage("cities"));
+
+        //Update page with local storage values
+        // set counts
+        var huntCount = 0;
+        var clueCount = 0;
+        //loop through cities to count hunts
+        $(cities).each(function (index, city) {
+            huntCount += city.hunts.length;
+            console.log(city);
+            $(city.hunts).each(function (index, hunt) {
+                console.log(hunt);
+                clueCount += hunt.cluesComp.length;
+            });
+        });
+        $("#profile-stats-cities > span").html(cities.length);
+        $("#profile-stats-hunts > span").html(huntCount);
+        $("#profile-stats-cluesComp > span").html(clueCount);
+
+        var name = getLocalStorage("name");
+        if (name) {
+            $('#name').val(name);
+        }
+
+        var email = getLocalStorage("email");
+        if (email) {
+            $("#email").val(email);
+        }
+
+        //listener to store profile data into local storage as it is typed
+        $('.localStore').keyup(function () {
+            setLocalStorage($(this).attr('id'), $(this).val());
+        });
+    }
+
+    // initialize our form from local storage
+    //load the json object into the local storage
+    function loadProfile() {
+        // check if profile is loaded
+        var profileLoaded = (getLocalStorage("profileLoaded") ||
+                parseInt(getLocalStorage("profileLoaded")) === 1);
+        if (!profileLoaded) {
+            // load default demo profile json url into local storage
+            if (!getLocalStorage("demoProfileUrl")) {
+                setLocalStorage("demoProfileUrl", "assets/profileJSON.json");
+            }
+            var demoProfileUrl = getLocalStorage("demoProfileUrl");
+            $.getJSON(demoProfileUrl, function (result) {
+                console.log("getJSON(" + demoProfileUrl + ")");
+
+                // add profile values to local storage
+                setLocalStorage("name", result.profile.name);
+                setLocalStorage("email", result.profile.email);
+                setLocalStorage("cities", JSON.stringify(result.profile.cities));
+
+                // set loaded
+                setLocalStorage("profileLoaded", 1);
+
+                //loads profile data from local storage into form
+                loadProfileForm();
+            });
+        }
+        else {
+            //loads profile data from local storage into form
+            loadProfileForm();
+        }
+
+    }
+
+
+    $(window).load(function(){
+        // check if local storage is available
+        if (window.localStorage) {
+            loadProfile();
+        }
+        else {
+            alert("Local Storage required to play this game. Sowie.");
+        }
+    });
+
+
+</script>
 
 </body>
 </html>

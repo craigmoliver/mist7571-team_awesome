@@ -1,13 +1,11 @@
 {
     "profile":{
-        "username":"CoolRunning",
-        "email":"1@2.com",
-        "firstName":"Guest",
-        "lastName":"Last",
+        "email":"example@test.com",
+        "name":"Guest",
         "cities":[
             {
                 "name":"Atlanta",
-                "huntsComp": [
+                "hunts": [
                     {
                         "clueStatus":"-1",
                         "order": 0,
