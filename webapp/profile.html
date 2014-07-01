@@ -85,18 +85,16 @@
           //retrieve json data from local storage
             json = JSON.parse(localStorage.getItem('json'));
           
-			console.log("This is a name " + json.profile.username);
-			console.log("This is a email " + json.profile.email);
-			
-            
-                $("#username").html(json.profile.username.value);
-                $("#email").html(json.profile.email);
-                console.log("This is a email2 " + json.profile.email);
-                $("#firstName").html(json.profile.firstName);
-                $("#cities").html(json.profile.cities.length);
-                $("#huntsComp").html(json.profile.cities.huntsComp.length);
-                $("#cluesComp").html(json.profile.cities.cluesComp.length);
-            
+			//console.log("This is a name " + json.profile.username);
+			//console.log("This is a email " + json.profile.email);
+			//Update page with local storage values
+            $("#username").html(json.profile.username);
+            $("#email").html(json.profile.email);
+            $("#firstName").html(json.profile.firstName);
+            $("#cities").html(json.profile.cities.length);
+            $("#huntsComp").html(json.profile.cities.huntsComp.length);
+            $("#cluesComp").html(json.profile.cities.cluesComp.length);
+
 	    });
 
 	});
@@ -129,9 +127,9 @@
         		<div id="username"></div>
         		<div id="email"></div>
         		<br/>
-        		<a href="#" ><div id="cities"></div> Cities Scavenged</a>
-                <a href="#" ><div id="huntsComp"></div> Hunts Completed</a>
-                <a href="#" ><div id="cluesComp"></div> Clues Solved</a>
+        		<div data-icon="location"><div id="cities"></div> Cities Scavenged</div>
+                <a href="#" data-icon="home"><div id="huntsComp"></div> Hunts Completed</a>
+                <a href="#" data-icon="home"><div id="cluesComp"></div> Clues Solved</a>
                 </div>
                 
                 <!-- Only seen when the user hasn't set up a profile -->
